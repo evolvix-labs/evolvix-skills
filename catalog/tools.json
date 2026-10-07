@@ -39,7 +39,8 @@
         "nutrition:write"
       ],
       "kind": "destructive",
-      "summary": "Copies a plan set's plans into a client and replaces the client's day-type setup and weekday rules with the set's."
+      "summary": "Copies a plan set's plans into a client and replaces the client's day-type setup.",
+      "dryRunDefault": true
     },
     {
       "name": "assign_program",
@@ -50,7 +51,9 @@
       "summary": "Puts a program on the client: copies its workouts onto dates (Calendar, day 1 of the chosen week falls on startDate) or onto the end of the list (Fixed).",
       "dryRunDefault": true,
       "values": [
-        "nutrition"
+        "keep",
+        "nutrition",
+        "replace"
       ]
     },
     {
@@ -351,7 +354,7 @@
         "chat:read"
       ],
       "kind": "read",
-      "summary": "Lists messages in a relationship, newest page first."
+      "summary": "Lists a page of messages in a relationship, oldest first within the page."
     },
     {
       "name": "get_metric_trend",
@@ -359,7 +362,7 @@
         "metrics:read"
       ],
       "kind": "read",
-      "summary": "Returns one metric's entries, open goal, and summary: first, last, change, percent change, average, and the previous period's average."
+      "summary": "Returns one metric's entries, open goal, and summary: first, last, change, percent change, average, and previousAverage."
     },
     {
       "name": "get_metric_week",
@@ -603,7 +606,7 @@
         "checkins:read"
       ],
       "kind": "read",
-      "summary": "Lists the signed-in client's check-ins across their open coaching relationships, soonest first, with state upcoming, open, submitted, missed or skipped."
+      "summary": "Lists the signed-in client's open and upcoming check-ins across their open coaching relationships, soonest first."
     },
     {
       "name": "list_my_relationships",
@@ -768,7 +771,7 @@
         "nutrition:write"
       ],
       "kind": "write",
-      "summary": "Logs a plan meal as eaten: every line of the chosen or default option, scaled by portion from 0.25 to 2."
+      "summary": "Logs a plan meal as eaten: every line of the day's chosen option, or the default option when none was chosen, scaled by portion from 0.25 to 2."
     },
     {
       "name": "log_workout",
@@ -800,7 +803,7 @@
         "chat:write"
       ],
       "kind": "destructive",
-      "summary": "Posts one message into each client's conversation."
+      "summary": "Sends one message from the caller into each client's conversation and notifies the client like a chat message."
     },
     {
       "name": "move_workout",
@@ -920,7 +923,7 @@
         "library:read"
       ],
       "kind": "read",
-      "summary": "Searches the shared Evolvix exercises and your company's own, with filters, paging, and a total.",
+      "summary": "Searches the shared Evolvix exercises and your company's own by a substring of the name, sorted A to Z, with no relevance ranking.",
       "values": [
         "bands",
         "barbell",
@@ -979,7 +982,8 @@
         "nutrition:write"
       ],
       "kind": "write",
-      "summary": "Sets the calories and macros of one day type, such as legs or rest, and keeps the other day types, their plans, and the weekday rules."
+      "summary": "Sets one day type's calories and macros, or attaches mealPlanId, and keeps the other day types, their plans, and the weekday rules.",
+      "dryRunDefault": true
     },
     {
       "name": "set_day_override",
@@ -1002,6 +1006,7 @@
       ],
       "kind": "destructive",
       "summary": "Replaces all weekday and date rules.",
+      "dryRunDefault": true,
       "values": [
         "nutrition"
       ]
@@ -1011,8 +1016,9 @@
       "scopes": [
         "nutrition:write"
       ],
-      "kind": "write",
-      "summary": "Sets the same targets for every day."
+      "kind": "destructive",
+      "summary": "Sets the same targets for every day.",
+      "dryRunDefault": true
     },
     {
       "name": "set_metric_goal",
@@ -1036,7 +1042,7 @@
         "checkins:write"
       ],
       "kind": "write",
-      "summary": "Skips one upcoming or open check-in and schedules the next."
+      "summary": "Skips one upcoming or open check-in and schedules the next, or excuses a missed one so it stops counting against compliance."
     },
     {
       "name": "skip_workout",
