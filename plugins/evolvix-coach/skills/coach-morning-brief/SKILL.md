@@ -59,7 +59,7 @@ Run this on Mondays, or when the coach asks who has gone quiet, who missed a che
 6. Draft one personal nudge per client: one real detail from their last check-in, one small ask ("send me today's weight"), no guilt and no template feel.
 7. Show the list. After the coach approves, send each with `send_message`, one at a time with an `idempotencyKey`. Then do the follow-ups the coach picked:
    - Give a missed check-in a new window with `reopen_checkin_due` and a `closesOn` date. It notifies the client.
-   - Excuse a check-in (holiday, illness) with `skip_checkin_due` and a reason. If the server refuses because the window has closed, offer to reopen it instead.
+   - Excuse a missed or upcoming check-in (holiday, illness) with `skip_checkin_due` and a reason. It leaves the missed list and stops counting against the client.
    - A follow-up task with `create_task`, linked to the client.
 
 ## Judgment

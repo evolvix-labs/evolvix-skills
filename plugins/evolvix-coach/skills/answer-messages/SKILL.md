@@ -24,7 +24,7 @@ Replying to clients is the biggest daily time cost for an online coach. This ski
 ## Before you start
 
 - `get_me` gives the coach's name and language.
-- Sending needs "Send messages to clients for you." on the Evolvix consent screen. It starts unticked. Without it, draft only, show the drafts, and say how to grant it: reconnect Evolvix and tick that line. Marking a conversation read needs the same permission.
+- Sending needs "Send messages to clients for you." on the Evolvix consent screen. It starts unticked. Without it, draft only, show the drafts, and say how to grant it: reconnect Evolvix and tick that line.
 - Tasks need "Create, change, and delete tasks." Notes need "Add and update clients, their notes, tags, and invitations."
 
 ## Steps
@@ -39,7 +39,7 @@ Replying to clients is the biggest daily time cost for an online coach. This ski
    Quote the plan. Never answer a plan question from memory.
 5. Draft one reply per conversation. Mark it **needs you** instead of drafting when the message is about health (see the ground rules), is emotional or a complaint, or is about price, contract, refunds or ending the coaching.
 6. Show all drafts in one list (format below). The coach approves, edits or skips each one. "Send them all" counts only after every draft was shown.
-7. For each approved draft, `send_message` with the text and an `idempotencyKey`. Then `mark_conversation_read` with the id of the message you just sent as `lastReadMessageId`, so the thread leaves the unread list.
+7. For each approved draft, `send_message` with the text and an `idempotencyKey`. Sending a reply also marks the thread read, so it leaves the unread list. For a thread the coach wants cleared without a reply, `mark_conversation_read` with the newest message's id as `lastReadMessageId`.
 8. When a reply promises something ("I'll look at your plan tonight"), offer a task with `create_task` linked to the client. Offer `add_client_note` for facts worth keeping (a new injury, a holiday, a schedule change).
 9. Close with counts: sent, skipped, needs you.
 
@@ -67,5 +67,5 @@ Replying to clients is the biggest daily time cost for an online coach. This ski
 
 - `send_message` is not available: deliver the drafts only, and say that sending needs "Send messages to clients for you."
 - The send fails because the client is archived or their Messaging module is off: report it for that client and carry on.
-- A 429 response means the rate limit (about 20 writes a minute for connected apps; each reply is two writes). Wait for the time it gives, then continue. Never send a reply twice; the `idempotencyKey` protects a retry.
+- A 429 response means the rate limit (about 20 writes a minute for connected apps). Wait for the time it gives, then continue. Never send a reply twice; the `idempotencyKey` protects a retry.
 - No unread conversations: say the inbox is clear.
