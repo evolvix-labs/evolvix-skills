@@ -1,0 +1,16 @@
+{
+  "name": "evolvix-client",
+  "displayName": "Evolvix for clients",
+  "version": "0.1.0",
+  "description": "Log food, training and weight from a sentence, do your check-in, and see today's plan from your Evolvix coach. Claude shows what it will save and asks first.",
+  "author": {
+    "name": "Evolvix",
+    "url": "https://evolvix.app"
+  },
+  "homepage": "https://github.com/nilpntr/evolvix-skills",
+  "repository": "https://github.com/nilpntr/evolvix-skills",
+  "license": "MIT",
+  "keywords": ["coaching", "fitness", "nutrition", "food log", "evolvix"],
+  "supportUrl": "https://evolvix.app/support",
+  "privacyPolicyUrl": "https://evolvix.app/privacy"
+}

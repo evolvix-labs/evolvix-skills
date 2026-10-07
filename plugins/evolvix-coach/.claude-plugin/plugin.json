@@ -1,0 +1,16 @@
+{
+  "name": "evolvix-coach",
+  "displayName": "Evolvix for coaches",
+  "version": "0.1.0",
+  "description": "Review check-ins, answer messages, set nutrition by training day, build programs, and keep track of every client through the Evolvix connector. Nothing reaches a client without your yes.",
+  "author": {
+    "name": "Evolvix",
+    "url": "https://evolvix.app"
+  },
+  "homepage": "https://github.com/nilpntr/evolvix-skills",
+  "repository": "https://github.com/nilpntr/evolvix-skills",
+  "license": "MIT",
+  "keywords": ["coaching", "fitness", "nutrition", "check-ins", "evolvix"],
+  "supportUrl": "https://evolvix.app/support",
+  "privacyPolicyUrl": "https://evolvix.app/privacy"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "evolvix",
+  "description": "Skills that let Claude do the weekly coaching work in Evolvix: check-in reviews, nutrition by training day, programs, and logging for clients.",
+  "owner": {
+    "name": "Evolvix",
+    "url": "https://evolvix.app"
+  },
+  "plugins": [
+    {
+      "name": "evolvix-coach",
+      "source": "./plugins/evolvix-coach",
+      "description": "For coaches: review check-ins, answer messages, set nutrition by training day, build programs, and keep track of every client through the Evolvix connector.",
+      "category": "productivity",
+      "tags": ["coaching", "fitness", "nutrition", "evolvix"]
+    },
+    {
+      "name": "evolvix-client",
+      "source": "./plugins/evolvix-client",
+      "description": "For clients of an Evolvix coach: log food, training and weight from a sentence, do your check-in, and see today's plan.",
+      "category": "productivity",
+      "tags": ["coaching", "fitness", "nutrition", "evolvix"]
+    }
+  ]
+}

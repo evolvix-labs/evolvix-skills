@@ -1,0 +1,1152 @@
+{
+  "server": "https://api.evolvix.app/mcp",
+  "tools": [
+    {
+      "name": "add_client_note",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a note on a client."
+    },
+    {
+      "name": "add_workout_to_program",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Puts a copy of a library workout, or a new empty workout, on a day of a week."
+    },
+    {
+      "name": "assign_form_to_clients",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "destructive",
+      "summary": "Assigns one form to up to 100 clients on the same schedule and notifies each."
+    },
+    {
+      "name": "assign_habits",
+      "scopes": [
+        "habits:write"
+      ],
+      "kind": "write",
+      "summary": "Gives a client up to 20 habits at once."
+    },
+    {
+      "name": "assign_plan_set",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "destructive",
+      "summary": "Copies a plan set's plans into a client and replaces the client's day-type setup and weekday rules with the set's."
+    },
+    {
+      "name": "assign_program",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Puts a program on the client: copies its workouts onto dates (Calendar, day 1 of the chosen week falls on startDate) or onto the end of the list (Fixed).",
+      "dryRunDefault": true,
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "bulk_update_tasks",
+      "scopes": [
+        "tasks:write"
+      ],
+      "kind": "destructive",
+      "summary": "Updates many tasks at once."
+    },
+    {
+      "name": "check_client_email",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Reports whether an email is new, a client here, or already on the team."
+    },
+    {
+      "name": "choose_meal_option",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Picks an option, or a recipe with servings, for a meal on one date."
+    },
+    {
+      "name": "clear_day_override",
+      "scopes": [
+        "nutrition:write",
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Removes the override on one date so training and rules decide again.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "compare_checkins",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Puts 2 to 4 sent check-ins side by side by question key, with the change from first to last and the photos per pose."
+    },
+    {
+      "name": "complete_task",
+      "scopes": [
+        "tasks:write"
+      ],
+      "kind": "write",
+      "summary": "Marks a task done."
+    },
+    {
+      "name": "confirm_food_log_draft",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Saves a text draft as entries."
+    },
+    {
+      "name": "copy_food_log",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Copies a day's entries, or only the listed meals, to another date as new entries."
+    },
+    {
+      "name": "create_client",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a client with access invite or later."
+    },
+    {
+      "name": "create_day_type",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a company day type such as Legs or High carb."
+    },
+    {
+      "name": "create_program",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a Calendar or Fixed program with one empty first week."
+    },
+    {
+      "name": "create_task",
+      "scopes": [
+        "tasks:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a task for the company."
+    },
+    {
+      "name": "create_workout",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a library workout (or a section template with ownerKind section) from blocks of lines and sets."
+    },
+    {
+      "name": "delete_food_log_entry",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "destructive",
+      "summary": "Deletes one entry."
+    },
+    {
+      "name": "delete_metric_entry",
+      "scopes": [
+        "metrics:write"
+      ],
+      "kind": "destructive",
+      "summary": "Deletes one day's entry."
+    },
+    {
+      "name": "delete_session",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "destructive",
+      "summary": "Deletes a session and recomputes the records it affected."
+    },
+    {
+      "name": "draft_checkin_feedback",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "write",
+      "summary": "Saves feedback on a sent check-in as a draft for the coach."
+    },
+    {
+      "name": "edit_client_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "destructive",
+      "summary": "Saves this client's copy of a workout as a new revision and marks it customised.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "find_clients_missing_habits",
+      "scopes": [
+        "habits:read"
+      ],
+      "kind": "read",
+      "summary": "Lists clients whose habit completion over the last days is below a percentage, lowest first."
+    },
+    {
+      "name": "get_activity_summary",
+      "scopes": [
+        "metrics:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a client's steps, active energy, sleep, resting heart rate and workouts for a week or month, each compared with the period before.",
+      "values": [
+        "month",
+        "week"
+      ]
+    },
+    {
+      "name": "get_checkin",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one check-in with the questions of its revision, the answers, comments and feedback."
+    },
+    {
+      "name": "get_checkin_question_trend",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one question's answers across a form's sent check-ins, oldest first."
+    },
+    {
+      "name": "get_client",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one client, including status, coaches, profile, and week."
+    },
+    {
+      "name": "get_client_overview",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Reads one client's overview for a date and a week."
+    },
+    {
+      "name": "get_client_workout",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one client workout with its full document: blocks, lines, sets, and alternatives."
+    },
+    {
+      "name": "get_coach_today",
+      "scopes": [
+        "company:read"
+      ],
+      "kind": "read",
+      "summary": "Reads the coach's today page for one company."
+    },
+    {
+      "name": "get_day_calendar",
+      "scopes": [
+        "nutrition:read",
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the client's resolved day types for a date range: the type, the fallback chain nutrition uses, and why.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "get_day_rules",
+      "scopes": [
+        "nutrition:read",
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the weekday and date rules used on days training does not decide."
+    },
+    {
+      "name": "get_exercise_history",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one exercise's history: best weight, estimated 1RM, volume and session tiles, a chart series per day with record markers, and the set log per session."
+    },
+    {
+      "name": "get_fixed_program",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a Fixed client's workouts in order with done, next, upcoming, or skipped, which one is next up, and sessions done outside the list."
+    },
+    {
+      "name": "get_food_log",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one day's food log: entries, totals, per-meal groups, the day's snapshot target, the note, skips, and choices."
+    },
+    {
+      "name": "get_grocery_list",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the grocery list for a date range: foods from each day's meal plan summed with units, grouped by shop category, with ticks and the client's own items.",
+      "values": [
+        "default",
+        "picks"
+      ]
+    },
+    {
+      "name": "get_habit_summary",
+      "scopes": [
+        "habits:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the week table: one row per habit, one cell per day, plus the average."
+    },
+    {
+      "name": "get_me",
+      "scopes": [
+        "profile"
+      ],
+      "kind": "read",
+      "summary": "Returns the signed-in profile."
+    },
+    {
+      "name": "get_messages",
+      "scopes": [
+        "chat:read"
+      ],
+      "kind": "read",
+      "summary": "Lists messages in a relationship, newest page first."
+    },
+    {
+      "name": "get_metric_trend",
+      "scopes": [
+        "metrics:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one metric's entries, open goal, and summary: first, last, change, percent change, average, and the previous period's average."
+    },
+    {
+      "name": "get_metric_week",
+      "scopes": [
+        "metrics:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the week table: every tracked metric by day, the week's average, and the change from the week before."
+    },
+    {
+      "name": "get_nutrition_day",
+      "scopes": [
+        "nutrition:read",
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one day's nutrition: the day type, which plan applies after fallback, the target, and the meals."
+    },
+    {
+      "name": "get_nutrition_settings",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns how the client logs food and what nutrition features they see."
+    },
+    {
+      "name": "get_nutrition_setup",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the nutrition pattern for a relationship."
+    },
+    {
+      "name": "get_nutrition_summary",
+      "scopes": [
+        "nutrition:read",
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the last days up to today with the day type, the target the client saw, and what was logged, plus averages over logged days."
+    },
+    {
+      "name": "get_program",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a program with its settings, weeks, and placed workouts (name, counts, day type, estimated duration) and the revision to send back."
+    },
+    {
+      "name": "get_session",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one session with its exercises, sets, previous performance, current records, and the records it set."
+    },
+    {
+      "name": "get_todays_habits",
+      "scopes": [
+        "habits:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the habits due today in the client's time zone, with state, amount and streak."
+    },
+    {
+      "name": "get_training_calendar",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns each date of a range (at most 62 days) with its day type, its client workouts, and the sessions performed."
+    },
+    {
+      "name": "get_training_stats",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns training statistics for a period against the equal period before: KPIs, weighted sets per muscle, daily upper, lower, and core sets, a trained-day calendar, and record cards.",
+      "values": [
+        "12m",
+        "30d",
+        "7d",
+        "90d",
+        "custom"
+      ]
+    },
+    {
+      "name": "import_clients",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds up to 200 clients."
+    },
+    {
+      "name": "list_checkin_assignments",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the forms assigned to a client with their schedule, next due check-in and compliance."
+    },
+    {
+      "name": "list_checkin_inbox",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Lists sent check-ins to review across the clients the caller may review: pending oldest first, reviewed newest first.",
+      "values": [
+        "pending",
+        "reviewed"
+      ]
+    },
+    {
+      "name": "list_client_checkins",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Lists a client's check-ins newest first.",
+      "values": [
+        "draft",
+        "pending",
+        "reviewed",
+        "submitted"
+      ]
+    },
+    {
+      "name": "list_client_metrics",
+      "scopes": [
+        "metrics:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the metrics a client tracks with the latest value and open goal."
+    },
+    {
+      "name": "list_client_notes",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Lists staff notes on a client, including private ones.",
+      "values": [
+        "shared",
+        "staff"
+      ]
+    },
+    {
+      "name": "list_client_tags",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the company's client tags and how many clients use each."
+    },
+    {
+      "name": "list_clients",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Lists clients in the caller's company, with status, tags, and week labels.",
+      "values": [
+        "-lastActive",
+        "-lastCheckin",
+        "-name",
+        "-started",
+        "-week",
+        "active",
+        "all",
+        "any",
+        "archived",
+        "cancelled",
+        "checkin-overdue",
+        "checkin-pending",
+        "current",
+        "inactive",
+        "invited",
+        "lastActive",
+        "lastCheckin",
+        "message-unanswered",
+        "mine",
+        "name",
+        "onboarding",
+        "past-end",
+        "paused",
+        "protein",
+        "started",
+        "week",
+        "weigh-in"
+      ]
+    },
+    {
+      "name": "list_conversations",
+      "scopes": [
+        "chat:read"
+      ],
+      "kind": "read",
+      "summary": "Lists conversations with unread counts for the signed-in person.",
+      "values": [
+        "all",
+        "mine"
+      ]
+    },
+    {
+      "name": "list_day_types",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists day types: the built-in training and rest plus the company's own."
+    },
+    {
+      "name": "list_forms",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the company's check-in and questionnaire forms with question count and active assignments.",
+      "values": [
+        "checkin",
+        "questionnaire"
+      ]
+    },
+    {
+      "name": "list_missed_checkins",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Lists check-ins whose window closed unsent in the last 30 days, most overdue first."
+    },
+    {
+      "name": "list_my_due_checkins",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the signed-in client's check-ins across their open coaching relationships, soonest first, with state upcoming, open, submitted, missed or skipped."
+    },
+    {
+      "name": "list_my_relationships",
+      "scopes": [
+        "profile"
+      ],
+      "kind": "read",
+      "summary": "Lists the open coaching relationships of the signed-in person, with the enabled modules of each."
+    },
+    {
+      "name": "list_nutrition_plans",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Lists a client's nutrition plans with planned totals, option ranges, and the day types that use each.",
+      "values": [
+        "macros",
+        "meal"
+      ]
+    },
+    {
+      "name": "list_performed_exercises",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the exercises the client has logged, most recent first, with the last date and the number of sessions."
+    },
+    {
+      "name": "list_personal_records",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the current record of each kind per exercise, and with exerciseId every record event too."
+    },
+    {
+      "name": "list_plan_sets",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists plan sets: library plans and targets per day type, assigned together."
+    },
+    {
+      "name": "list_practices",
+      "scopes": [
+        "company:read"
+      ],
+      "kind": "read",
+      "summary": "Lists practices in the caller's company."
+    },
+    {
+      "name": "list_program_assignments",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the programs on the client with their dates, status, and how many of their workouts are done."
+    },
+    {
+      "name": "list_programs",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the programs of your company with week, workout, and assigned-client counts, plus shared samples when asked.",
+      "values": [
+        "calendar",
+        "fixed"
+      ]
+    },
+    {
+      "name": "list_saved_replies",
+      "scopes": [
+        "chat:read"
+      ],
+      "kind": "read",
+      "summary": "Lists personal and shared saved replies for the caller."
+    },
+    {
+      "name": "list_sessions",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the client's workout sessions, newest first, with sets, volume, difficulty, and the number of records each set."
+    },
+    {
+      "name": "list_tasks",
+      "scopes": [
+        "tasks:read"
+      ],
+      "kind": "read",
+      "summary": "Lists tasks the caller can see, with overdue, today, upcoming, and no-date counts.",
+      "values": [
+        "all",
+        "automation",
+        "done",
+        "manual",
+        "mine",
+        "open",
+        "system"
+      ]
+    },
+    {
+      "name": "list_team",
+      "scopes": [
+        "company:read"
+      ],
+      "kind": "read",
+      "summary": "Lists teammates with status, client count, last activity, and pending invitations."
+    },
+    {
+      "name": "list_workouts",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists library workouts (or section templates) of your company and the shared samples, with filters and a total.",
+      "values": [
+        "library",
+        "section"
+      ]
+    },
+    {
+      "name": "log_food",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Logs foods, recipes, or quick adds to one meal."
+    },
+    {
+      "name": "log_food_from_text",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Turns a description such as \"2 eggs, toast and coffee\" into a draft of matched foods."
+    },
+    {
+      "name": "log_habit",
+      "scopes": [
+        "habits:write"
+      ],
+      "kind": "write",
+      "summary": "Logs a habit for one day."
+    },
+    {
+      "name": "log_metrics",
+      "scopes": [
+        "metrics:write"
+      ],
+      "kind": "write",
+      "summary": "Logs several metrics for one day in one call."
+    },
+    {
+      "name": "log_planned_meal",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Logs a plan meal as eaten: every line of the chosen or default option, scaled by portion from 0.25 to 2."
+    },
+    {
+      "name": "log_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Logs a finished workout after the fact in one call: exercises with the sets as performed, all counted as done."
+    },
+    {
+      "name": "mark_checkins_reviewed",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "write",
+      "summary": "Marks up to 100 sent check-ins as reviewed, or back to pending with reviewed false."
+    },
+    {
+      "name": "mark_conversation_read",
+      "scopes": [
+        "chat:write"
+      ],
+      "kind": "write",
+      "summary": "Moves the caller's read marker to a message in this conversation."
+    },
+    {
+      "name": "message_clients",
+      "scopes": [
+        "chat:write"
+      ],
+      "kind": "destructive",
+      "summary": "Posts one message into each client's conversation."
+    },
+    {
+      "name": "move_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Moves a workout to another date (Calendar) or place (Fixed).",
+      "dryRunDefault": true,
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "parse_workout_text",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Reads pasted workout text, one exercise per line like \"Back squat 4x6 92.5kg, rest 120s\", and matches each line to the exercise library."
+    },
+    {
+      "name": "pause_client",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Pauses a client."
+    },
+    {
+      "name": "periodise_client_workouts",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Repeats the chosen workouts on the same weekday for the next weeks, each week a step further: more weight, reps, sets, or RPE, with an optional deload week.",
+      "dryRunDefault": true,
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "periodise_program",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Copies selected workouts forward week by week, progressing weight, reps, sets, effort, and deloads.",
+      "dryRunDefault": true
+    },
+    {
+      "name": "preview_client_import",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Classifies import rows without writing them."
+    },
+    {
+      "name": "remove_program_from_client",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "destructive",
+      "summary": "Takes a program off the client from a date on.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "reopen_checkin_due",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "destructive",
+      "summary": "Opens a missed or skipped check-in again until the end of closesOn."
+    },
+    {
+      "name": "resend_invitation",
+      "scopes": [
+        "clients:write",
+        "team:write"
+      ],
+      "kind": "write",
+      "summary": "Sends an invitation again with a fresh link."
+    },
+    {
+      "name": "resume_client",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Resumes a paused client back to active."
+    },
+    {
+      "name": "save_checkin_answers",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "write",
+      "summary": "Saves several answers of a draft in one call, or of a sent check-in the client may still change."
+    },
+    {
+      "name": "schedule_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Adds one workout to the client: a copy of a library or program workout, or an empty one, on a date (Calendar) or place (Fixed).",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "search_exercises",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Searches the shared Evolvix exercises and your company's own, with filters, paging, and a total.",
+      "values": [
+        "bands",
+        "barbell",
+        "beginner",
+        "body_only",
+        "cable",
+        "cardio",
+        "dumbbell",
+        "exercise_ball",
+        "expert",
+        "ez_curl_bar",
+        "foam_roll",
+        "intermediate",
+        "kettlebell",
+        "level",
+        "machine",
+        "medicine_ball",
+        "name",
+        "olympic_weightlifting",
+        "other",
+        "plyometrics",
+        "powerlifting",
+        "strength",
+        "stretching",
+        "strongman",
+        "type"
+      ]
+    },
+    {
+      "name": "search_log_foods",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Searches the foods this client can log: shared foods plus the company's."
+    },
+    {
+      "name": "send_client_invitation",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Emails an invitation to an invited client who has none, such as one added with access later."
+    },
+    {
+      "name": "send_message",
+      "scopes": [
+        "chat:write"
+      ],
+      "kind": "destructive",
+      "summary": "Sends a chat message."
+    },
+    {
+      "name": "set_daily_targets",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Sets the calories and macros of one day type, such as legs or rest, and keeps the other day types, their plans, and the weekday rules."
+    },
+    {
+      "name": "set_day_override",
+      "scopes": [
+        "nutrition:write",
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Sets the day type of one date, overriding training and rules.",
+      "dryRunDefault": true,
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "set_day_rules",
+      "scopes": [
+        "nutrition:write",
+        "training:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces all weekday and date rules.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "set_everyday_targets",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Sets the same targets for every day."
+    },
+    {
+      "name": "set_metric_goal",
+      "scopes": [
+        "metrics:write"
+      ],
+      "kind": "write",
+      "summary": "Sets the goal for one metric with a start and goal date."
+    },
+    {
+      "name": "set_nutrition_setup",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces the nutrition pattern for a relationship."
+    },
+    {
+      "name": "skip_checkin_due",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "write",
+      "summary": "Skips one upcoming or open check-in and schedules the next."
+    },
+    {
+      "name": "skip_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Marks a workout skipped.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "snooze_attention",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Snoozes one attention reason for 1, 3, or 7 days."
+    },
+    {
+      "name": "start_checkin",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "write",
+      "summary": "Opens a draft for a due check-in, or an extra one on a form that allows it."
+    },
+    {
+      "name": "submit_checkin",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "destructive",
+      "summary": "Sends the check-in to the coach."
+    },
+    {
+      "name": "suggest_targets",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Suggests daily targets from bodyweight, goal, and activity."
+    },
+    {
+      "name": "tag_clients",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds and removes tags on many clients."
+    },
+    {
+      "name": "unlog_habit",
+      "scopes": [
+        "habits:write"
+      ],
+      "kind": "destructive",
+      "summary": "Removes the log of one day."
+    },
+    {
+      "name": "unskip_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Puts a skipped workout back on the calendar.",
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
+      "name": "update_checkin_schedule",
+      "scopes": [
+        "checkins:write"
+      ],
+      "kind": "write",
+      "summary": "Changes an assignment's schedule."
+    },
+    {
+      "name": "update_client",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Updates a client's names, dates, practice, or email."
+    },
+    {
+      "name": "update_food_log_entry",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Changes one entry."
+    },
+    {
+      "name": "update_habit",
+      "scopes": [
+        "habits:write"
+      ],
+      "kind": "write",
+      "summary": "Updates a habit."
+    },
+    {
+      "name": "update_task",
+      "scopes": [
+        "tasks:write"
+      ],
+      "kind": "write",
+      "summary": "Updates a task."
+    }
+  ]
+}

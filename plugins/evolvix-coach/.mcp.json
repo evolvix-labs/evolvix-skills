@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "evolvix": {
+      "type": "http",
+      "url": "https://api.evolvix.app/mcp"
+    }
+  }
+}
