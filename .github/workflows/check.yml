@@ -15,3 +15,11 @@ jobs:
           python-version: "3.12"
       - name: Skills, plugins, and tool names
         run: python3 scripts/check.py --report
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Claude Code plugin validation
+        run: |
+          npx -y @anthropic-ai/claude-code plugin validate . --strict
+          npx -y @anthropic-ai/claude-code plugin validate plugins/evolvix-coach --strict
+          npx -y @anthropic-ai/claude-code plugin validate plugins/evolvix-client --strict

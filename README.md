@@ -33,28 +33,43 @@ Check-in feedback that Claude writes is saved as a draft in Evolvix; the coach s
 
 ## Install
 
-You need an Evolvix account. Coaches install **Evolvix for coaches**; clients of an Evolvix coach install **Evolvix for clients**.
+You need an Evolvix account. Coaches install **Evolvix for coaches**; clients of an Evolvix coach install **Evolvix for clients**. The marketplace is this repository, `evolvix-labs/evolvix-skills`, and it is named `evolvix`.
 
 ### Claude on the web, the desktop app, and Cowork
 
-1. Open **Customize > Plugins**, choose **Add > Add marketplace**, and enter `nilpntr/evolvix-skills`.
+1. Open **Customize > Plugins**, choose **Add > Add marketplace**, and enter `evolvix-labs/evolvix-skills`.
 2. Add **Evolvix for coaches** or **Evolvix for clients**.
 3. Open the plugin's **Connectors** tab, add the Evolvix connector, and sign in with your Evolvix account.
 
-The plugin is saved to your Claude account, so it is also available in Cowork and Claude Code.
+The plugin is saved to your Claude account, so it is also available in Cowork and in Claude Code signed in to the same account.
 
-### Claude Code
+### Claude Code, from the plugin panel
+
+1. Run `/plugin` and open the **Marketplaces** tab.
+2. Choose **Add marketplace** and enter `evolvix-labs/evolvix-skills`.
+3. On the **Discover** tab, open **Evolvix for coaches** or **Evolvix for clients** and install it.
+4. Run `/mcp`, pick `evolvix`, and sign in with your Evolvix account.
+
+In the desktop app's **Code** tab the same panel is under **+ > Plugins > Add plugin**.
+
+### Claude Code, from the command line
 
 ```text
-/plugin marketplace add nilpntr/evolvix-skills
+/plugin install evolvix-coach --marketplace evolvix-labs/evolvix-skills
+```
+
+or in two steps, also from a shell with `claude plugin`:
+
+```text
+/plugin marketplace add evolvix-labs/evolvix-skills
 /plugin install evolvix-coach@evolvix
 ```
 
-Use `evolvix-client@evolvix` for the client plugin. Run `/mcp`, pick `evolvix`, and sign in.
+Use `evolvix-client` for the client plugin. Turn on auto-update for the `evolvix` marketplace on the **Marketplaces** tab to get new skills as they ship.
 
-### Other MCP clients
+### Other agents
 
-Add the Evolvix MCP server at `https://api.evolvix.app/mcp` (OAuth sign-in), then copy the skill folders you want from `plugins/*/skills/` into your client's skills directory.
+`npx skills add evolvix-labs/evolvix-skills` installs the skills into other coding agents. Add the Evolvix MCP server at `https://api.evolvix.app/mcp` (OAuth sign-in) to the agent as well; the skills call its tools.
 
 ## Permissions
 

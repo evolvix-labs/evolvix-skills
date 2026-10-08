@@ -7,10 +7,18 @@
     "name": "Evolvix",
     "url": "https://evolvix.app"
   },
-  "homepage": "https://github.com/nilpntr/evolvix-skills",
-  "repository": "https://github.com/nilpntr/evolvix-skills",
+  "homepage": "https://github.com/evolvix-labs/evolvix-skills",
+  "repository": "https://github.com/evolvix-labs/evolvix-skills",
   "license": "MIT",
-  "keywords": ["coaching", "fitness", "nutrition", "food log", "evolvix"],
+  "keywords": [
+    "coaching",
+    "fitness",
+    "nutrition",
+    "food log",
+    "evolvix"
+  ],
   "supportUrl": "https://evolvix.app/support",
-  "privacyPolicyUrl": "https://evolvix.app/privacy"
+  "privacyPolicyUrl": "https://evolvix.app/privacy",
+  "icon": "./icon.png",
+  "documentationUrl": "https://github.com/evolvix-labs/evolvix-skills/tree/main/plugins/evolvix-client#readme"
 }
