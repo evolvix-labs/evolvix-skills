@@ -18,6 +18,22 @@
       "summary": "Puts a copy of a library workout, or a new empty workout, on a day of a week."
     },
     {
+      "name": "apply_sequence",
+      "scopes": [
+        "automations:write"
+      ],
+      "kind": "write",
+      "summary": "Enrolls a client."
+    },
+    {
+      "name": "archive_automation_rule",
+      "scopes": [
+        "automations:write"
+      ],
+      "kind": "write",
+      "summary": "Archives an automation and stops its enrollments."
+    },
+    {
       "name": "assign_form_to_clients",
       "scopes": [
         "checkins:write"
@@ -125,6 +141,14 @@
       "summary": "Copies a day's entries, or only the listed meals, to another date as new entries."
     },
     {
+      "name": "create_automation_rule",
+      "scopes": [
+        "automations:write"
+      ],
+      "kind": "write",
+      "summary": "Saves an automation as a draft."
+    },
+    {
       "name": "create_client",
       "scopes": [
         "clients:write"
@@ -226,6 +250,14 @@
         "month",
         "week"
       ]
+    },
+    {
+      "name": "get_automation",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one automation and its steps."
     },
     {
       "name": "get_checkin",
@@ -462,6 +494,47 @@
       "summary": "Adds up to 200 clients."
     },
     {
+      "name": "list_automation_actions",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the actions an automation can run."
+    },
+    {
+      "name": "list_automation_templates",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Lists sequence templates a coach can start from."
+    },
+    {
+      "name": "list_automation_triggers",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the events that can start an automation."
+    },
+    {
+      "name": "list_automations",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Lists automations in the company.",
+      "values": [
+        "active",
+        "archived",
+        "draft",
+        "event_rule",
+        "manual",
+        "onboarding",
+        "sequence"
+      ]
+    },
+    {
       "name": "list_checkin_assignments",
       "scopes": [
         "checkins:read"
@@ -494,6 +567,14 @@
         "reviewed",
         "submitted"
       ]
+    },
+    {
+      "name": "list_client_enrollments",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Lists automations enrolled for one client."
     },
     {
       "name": "list_client_metrics",
@@ -581,6 +662,20 @@
       "summary": "Lists day types: the built-in training and rest plus the company's own."
     },
     {
+      "name": "list_enrollments",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Lists clients enrolled in one automation.",
+      "values": [
+        "active",
+        "completed",
+        "paused",
+        "stopped"
+      ]
+    },
+    {
       "name": "list_forms",
       "scopes": [
         "library:read"
@@ -591,6 +686,14 @@
         "checkin",
         "questionnaire"
       ]
+    },
+    {
+      "name": "list_habit_templates",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists habit templates: the company's own and the platform's, with how many clients use each."
     },
     {
       "name": "list_missed_checkins",
@@ -863,6 +966,14 @@
       "summary": "Classifies import rows without writing them."
     },
     {
+      "name": "publish_automation_rule",
+      "scopes": [
+        "automations:write"
+      ],
+      "kind": "write",
+      "summary": "Publishes an automation so it can enroll clients."
+    },
+    {
       "name": "remove_program_from_client",
       "scopes": [
         "training:write"
@@ -1072,6 +1183,14 @@
       "summary": "Opens a draft for a due check-in, or an extra one on a form that allows it."
     },
     {
+      "name": "stop_enrollment",
+      "scopes": [
+        "automations:write"
+      ],
+      "kind": "write",
+      "summary": "Stops one client's automation and cancels what is still scheduled."
+    },
+    {
       "name": "submit_checkin",
       "scopes": [
         "checkins:write"
@@ -1096,6 +1215,14 @@
       "summary": "Adds and removes tags on many clients."
     },
     {
+      "name": "test_automation_rule",
+      "scopes": [
+        "automations:read"
+      ],
+      "kind": "read",
+      "summary": "Previews runs due in the next 14 days."
+    },
+    {
       "name": "unlog_habit",
       "scopes": [
         "habits:write"
@@ -1113,6 +1240,14 @@
       "values": [
         "nutrition"
       ]
+    },
+    {
+      "name": "update_automation_rule",
+      "scopes": [
+        "automations:write"
+      ],
+      "kind": "write",
+      "summary": "Replaces an automation that is not archived, and leaving out the trigger, anchor, or settings resets them."
     },
     {
       "name": "update_checkin_schedule",

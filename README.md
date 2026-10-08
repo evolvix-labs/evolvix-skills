@@ -19,6 +19,7 @@ Two plugins, one for each side of the coaching relationship. Each skill is one r
 | nutrition-by-training-day | "Put Ada on 2,100 on training days and 1,800 on rest days, legs plus 300." |
 | program-builder | "Build Ben a 4-day upper/lower for 8 weeks and start him Monday." |
 | add-clients | "Add Ada, ada@example.com." "Here's my client list from HubFit." |
+| automation-designer | "When a client misses two check-ins, message them and give me a task." |
 
 **Evolvix for clients** (`evolvix-client`)
 
@@ -70,6 +71,7 @@ When you connect, Evolvix asks what Claude may do. Permissions that send things 
 | Create and change day types, foods, recipes, and library plans. | ticked | New day types, programs and workouts (program-builder, nutrition-by-training-day) |
 | Log and change measurements and their goals. | ticked | Weight and measurements in log-my-day |
 | Assign habits and log them. | ticked | Habits in add-clients and log-my-day |
+| Create and change automations and onboarding. | unticked | automation-designer (owners and admins) |
 
 Everything the skills read is covered by the read permissions, which start ticked.
 
