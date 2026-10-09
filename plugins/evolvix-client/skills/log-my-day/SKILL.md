@@ -3,15 +3,15 @@ name: log-my-day
 description: >
   Logs a client's day in Evolvix from one message: food (described in words, a planned meal, the
   same as yesterday, or just numbers), a finished workout, measurements such as weight or waist,
-  and habits. Shows one line per item and saves after one yes. Use whenever a client of an Evolvix
+  habits and cardio. Shows one line per item and saves after one yes. Use whenever a client of an Evolvix
   coach tells what they ate, trained, weighed or did, such as "two eggs and toast", "squat 3x5 at
-  80", "weight 74.8", "water done", "I ate my planned lunch", or "same breakfast as yesterday".
+  80", "weight 74.8", "water done", "I ran 30 minutes", "I ate my planned lunch", or "same breakfast as yesterday".
   Dutch: "ik heb gegeten", "log mijn lunch", "gewicht 74,8", "training gedaan".
 ---
 
 # Log my day
 
-Logging is the chore that makes clients quit. This skill turns one message into the right logs: food, a workout, measurements and habits. It shows what it will save in one short list, saves after a single yes, and confirms in one line per item.
+Logging is the chore that makes clients quit. This skill turns one message into the right logs: food, a workout, measurements, cardio and habits. It shows what it will save in one short list, saves after a single yes, and confirms in one line per item.
 
 ## Ground rules
 
@@ -25,22 +25,24 @@ Logging is the chore that makes clients quit. This skill turns one message into 
 
 - `list_my_relationships` gives the relationship id that every tool takes as `clientId`, and which modules (nutrition, training, metrics, habits) are on. Skip a part whose module is off and say so.
 - `get_me` gives the client's language, time zone and today's date. "This morning" and "yesterday" are in the client's time zone.
-- Permissions on the Evolvix consent screen: food needs "Change client nutrition setups, plans, day types, and food logs.", workouts "Schedule, move, and skip client workouts, assign programs, and log sessions.", measurements "Log and change measurements and their goals.", habits "Assign habits and log them.", and a message to the coach "Send messages to clients for you." (starts unticked).
+- Permissions on the Evolvix consent screen: food needs "Change client nutrition setups, plans, day types, and food logs.", workouts "Schedule, move, and skip client workouts, assign programs, and log sessions.", measurements "Log and change measurements and their goals.", habits and cardio "Assign habits and log them.", and a message to the coach "Send messages to clients for you." (starts unticked).
 
 ## Steps
 
-1. **Split the message** into food, training, measurements and habits. Keep the client's own words for each item.
+1. **Split the message** into food, training, measurements, cardio and habits. Keep the client's own words for each item.
 2. **Food.** Follow [references/food.md](references/food.md): read the coach's logging settings once, then for each meal pick the path (a planned meal, the same as another day, foods described in words, or numbers only).
 3. **Training.** For each exercise, find its id in what the client has done before with `list_performed_exercises` (`q` with the name); only a new exercise needs `search_exercises`. Build the sets: reps and weight in kilograms (1 lb is 0.4536 kg), and any effort the client gave. If the workout was on the plan, find it in `get_training_calendar` for that date and pass its id as `clientWorkoutId`, so the plan marks it done. The date can be today or up to seven days back.
 4. **Measurements.** `list_client_metrics` gives the keys and units the client tracks (bodyweight, waist and so on). Match the client's words to them. A value for a date that already has one replaces it: say so.
-5. **Habits.** `get_todays_habits` (or with a `date`) gives each habit's id, whether it is a yes-or-no or an amount habit, today's amount and the streak. "Two more glasses" means today's amount plus two.
-6. **Show one list** with one line per item and the date, and ask once: "Save all of this?" Ask at most one question about anything unclear (a portion, which exercise, which meal).
-7. **Save**, each write with an `idempotencyKey` so a retry cannot log twice:
+5. **Cardio.** A run, ride, swim or walk the client did without a watch is `add_cardio_entry`, not a workout log. Confirm the minutes and the type (running, cycling, walking, swimming, rowing, elliptical, stairs, hiit or other) before saving, and the day if it was not today. It counts toward every cardio habit that includes that type and never creates one. If the client has no cardio habit, say so and suggest asking the coach.
+6. **Habits.** `get_todays_habits` (or with a `date`) gives each habit's id, whether it is a yes-or-no or an amount habit, today's amount and the streak. "Two more glasses" means today's amount plus two.
+7. **Show one list** with one line per item and the date, and ask once: "Save all of this?" Ask at most one question about anything unclear (a portion, which exercise, which meal).
+8. **Save**, each write with an `idempotencyKey` so a retry cannot log twice:
    - Food: see the reference.
    - Training: `log_workout` with `performedOn`, the `exercises` and their `sets`, and optional `name`, `durationSeconds`, `difficulty` (1 to 5) and `note`.
    - Measurements: `log_metrics` with `recordedOn` and the `items` (key, value, unit).
+   - Cardio: `add_cardio_entry` with the day, the minutes and the activity type.
    - Habits: `log_habit` per habit with the `date`, and the `amount` for an amount habit (a yes-or-no habit takes no amount).
-8. **Confirm** in one line per item. For a workout, mention any new record the answer shows. Show what is left of today's food targets only if the coach shows targets (see the reference).
+9. **Confirm** in one line per item. For a workout, mention any new record the answer shows. Show what is left of today's food targets only if the coach shows targets (see the reference).
 
 ## Fixing a mistake
 

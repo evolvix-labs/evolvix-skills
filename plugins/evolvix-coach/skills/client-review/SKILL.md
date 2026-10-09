@@ -35,7 +35,7 @@ One client, on demand: at the end of a training block, when something feels off,
    - **Food.** `get_nutrition_summary` with `days` for the window (up to 92). Per day it gives the day type, the target the client saw, and what was logged, or null when nothing was logged. Then open at most three days that stand out with `get_food_log`: meals, entries, quick adds against real foods, skipped meals, the client's note. `get_day_calendar` shows overrides when a day type looks odd.
    - **Training.** `get_training_stats` with `range` 7d or 30d, or custom dates: planned, done, skipped, adherence, volume against the period before, sets per muscle, records. `list_program_assignments` names the program and how far along it is. For notable sessions, `list_sessions` (difficulty, notes) and `get_session`. New records: `list_personal_records` with `since`. A main lift over the block: `get_exercise_history` with `from`.
    - **Body.** `list_client_metrics` gives what the client tracks and any open goal. `get_metric_trend` per metric with `from` and `to`: compare the average of the last 7 days with the 7 days before, and the first week of the window with the last. `get_metric_week` shows all measurements for one week.
-   - **Habits.** `get_habit_summary` for the week; for a block, call it for the first and the last week.
+   - **Habits.** `get_habit_summary` for the week; for a block, call it for the first and the last week. A cardio habit counts watch workouts, Evolvix training and manual entries; `get_activity_summary` shows the cardio minutes and sessions per week. Say so when the cardio is short and the client has no watch: it may be missing entries, not missing effort.
    - **Activity.** `get_activity_summary` with `period` week or month, when the client shares a wearable.
    - **Check-ins.** `list_client_checkins` in the window, then `compare_checkins` with the first and the latest.
 4. **Red-flag screen** across notes, check-ins, food logs and the latest message. On a hit, the report leads with it and the skill drafts nothing to the client.
@@ -72,7 +72,7 @@ Pattern: protein drops at breakfast on rest days.
 
 Training: 3 of 4 sessions, Saturday skipped twice in a row. New record: squat 85 kg x 5.
 Body: 7-day average 71.8 kg, down 0.4 kg on the week before (on pace for 68 kg by December).
-Habits: water 7/7, steps 4/7.
+Habits: water 7/7, steps 4/7. Cardio 110 of 150 minutes.
 
 Next
 1. Add a protein breakfast on rest days (she logs yoghurt already; double it).

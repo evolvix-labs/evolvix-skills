@@ -56,7 +56,7 @@ When a reply is about something the client can open in Evolvix, such as "where i
    - A program: `list_programs` (filter with `q`). `list_program_assignments` shows whether the client has it.
    - A nutrition plan: `list_nutrition_plans` for this client.
    - A check-in form: `list_forms`. `list_checkin_assignments` shows whether the client has it.
-   - A habit, resource, recipe or collection has no lookup here: the coach attaches those in the Evolvix chat.
+   - A resource, recipe, collection or habit: `list_chat_references` with one `type` at a time and a search text `q`. It gives each match's id and title. Several matches: ask which; no match: say so and leave the card out.
 2. **Show the card in the draft** on its own line, with its type and, when you know it, that the client cannot open it yet.
 3. **Send** with `send_message`: the `body`, `references` (a list of `type` and `id`, where `type` is one of document, resource, program, nutrition_plan, form, habit, recipe or collection) and an `idempotencyKey`. The answer lists each card with its title.
 4. **When the answer is not_shared**, nothing was sent. It names each item with a code:
