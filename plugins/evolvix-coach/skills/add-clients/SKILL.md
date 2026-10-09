@@ -3,16 +3,16 @@ name: add-clients
 description: >
   Adds clients to Evolvix from a sentence or a pasted spreadsheet (moving from HubFit, Trainerize,
   Excel or another tool), checks every email first, imports up to 200 at a time, saves intake notes,
-  and then sets each client up with a check-in, habits and a first task. Invitations go out only
-  after the coach says so. Use whenever an Evolvix coach wants to add, import or move clients, says
-  "new client", "here is my client list", "add Ada, ada@example.com", or wants to invite clients,
-  even if they never say import. Dutch: "nieuwe klant toevoegen", "klanten importeren", "nodig Ada
-  uit".
+  brings in their past weights and measurements when the sheet has them, and then sets each client
+  up with a check-in, habits and a first task. Invitations go out only after the coach says so. Use
+  whenever an Evolvix coach wants to add, import or move clients, says "new client", "here is my
+  client list", "add Ada, ada@example.com", or wants to invite clients, even if they never say
+  import. Dutch: "nieuwe klant toevoegen", "klanten importeren", "nodig Ada uit".
 ---
 
 # Add clients
 
-Adding a client is the first job in Evolvix, and moving a whole client list over is what decides whether a coach switches. This skill turns a sentence or a pasted table into clients, previews every row before writing, and sets the new clients up. Clients are added without an email by default; the invitation goes out when the coach is ready, usually after the plan is in place.
+Adding a client is the first job in Evolvix, and moving a whole client list over is what decides whether a coach switches. This skill turns a sentence or a pasted table into clients, previews every row before writing, and sets the new clients up. Clients are added without an email by default; the invitation goes out when the coach is ready, usually after the plan is in place. When the sheet also holds weights or measurements per client, that history comes across once the clients exist.
 
 ## Ground rules
 
@@ -27,11 +27,12 @@ Adding a client is the first job in Evolvix, and moving a whole client list over
 
 - Adding clients, notes, tags and invitations needs "Add and update clients, their notes, tags, and invitations." Tasks need "Create, change, and delete tasks." Both start ticked.
 - The setup at the end needs "Fill in and submit check-ins, review them, and send feedback to clients." for check-in forms (starts unticked) and "Assign habits and log them." for habits.
+- Importing weight and measurement history needs "Log and change measurements and their goals." It starts ticked.
 - Every client needs a first name, a last name and an email. Never guess an email or how a full name splits; ask once for what is missing.
 
 ## Steps
 
-1. **Read the input.** Turn the sentence or the pasted table into rows: first name, last name, email, and any tag names. Map the coach's columns (for a HubFit or Trainerize export, name, email and tags are usually enough). Show what you read and ask once about anything unclear.
+1. **Read the input.** Turn the sentence or the pasted table into rows: first name, last name, email, and any tag names. Map the coach's columns (for a HubFit or Trainerize export, name, email and tags are usually enough). Note any weight or measurement columns for step 10; they do not go into the client rows. Show what you read and ask once about anything unclear.
 2. **Choices that apply to all rows.** `list_practices`: always send a `practiceId`, and ask lifestyle or physique when the company has several and the text does not say. Owners with a team: `list_team` for the coaches (`coachUserIds`, `primaryCoachUserId`). `list_client_tags` to match tag names. Ask for a start date and a planned end date if the coach wants them.
 3. **Check before writing.** One client: `check_client_email`. Many: `preview_client_import` with all rows and the shared `defaults` (up to 200 rows). Each email comes back as new or ready, a duplicate in the file, invalid, already a client here, already on the team here, archived here, or an existing Evolvix account elsewhere.
 4. **Show the table**: name, email, state, practice, coach, tags, start date, and access. Rows that cannot be added are listed with the reason and left out:
@@ -44,12 +45,13 @@ Adding a client is the first job in Evolvix, and moving a whole client list over
 7. **Dates per client.** Import rows cannot carry their own dates. When the sheet has a start or end date per client, set them afterwards with `update_client` (`startDate`, `plannedEndDate`), one client at a time.
 8. **Intake notes.** Goals, injuries, allergies, diet, schedule and anything else from the input become one pinned staff note per client with `add_client_note` (`visibility` staff unless the coach wants the client to see it).
 9. **Report** what was added, what was skipped and why, and who was emailed.
-10. **Set them up**, each after a yes:
+10. **History.** When the sheet has weight or measurement columns, offer to bring them across now that the clients exist ("The sheet has weights for 12 of the 14 clients. Import them?"). Per client, follow the import-client-history skill: find the client with `list_clients`, match the columns with `list_client_metrics`, then run `import_metric_history`, which is a dry run until `dryRun` is false. Show the counts of accepted, conflicting and invalid rows with two examples of each, one table with the counts per client for a group, and write only after a yes. When days already have a value, ask whether to skip them (the default) or replace them. A column with one value per client (a start weight) has no date: ask which date it belongs to.
+11. **Set them up**, each after a yes:
     - A check-in form: `list_forms` with `kind` checkin, then `assign_form_to_clients` with the form, the clients and a `schedule` (for example `frequency` weekly with a `weekday` and a `startDate`). It notifies each client, so show the list first.
     - Habits: `assign_habits` per client, up to 20 at once, from a template or written out (a name and a `goal` such as an amount of 8 glasses a day, or a yes-or-no habit on chosen days).
     - Tags after the fact: `tag_clients` with tag ids for many clients at once.
     - A first task per client with `create_task`, for example "Check in with Ada" three days out, linked to the client.
-11. **Invite.** Ask separately whether to invite the clients added with access later now or once their plans are ready. Then `send_client_invitation` per client. When an invitation already exists (a client says the link expired), `resend_invitation` with the invitation id; it allows three resends an hour.
+12. **Invite.** Ask separately whether to invite the clients added with access later now or once their plans are ready. Then `send_client_invitation` per client. When an invitation already exists (a client says the link expired), `resend_invitation` with the invitation id; it allows three resends an hour.
 
 Nutrition targets and programs for the new clients belong to the nutrition-by-training-day and program-builder skills. Offer them after the setup.
 
@@ -81,3 +83,4 @@ Add these 2 clients?
 - A timeout during an import: check `list_clients` before retrying, or retry with the same `idempotencyKey`. Never import the same rows twice.
 - A 429 response: the rate limit is about 20 writes a minute for connected apps. Wait the time it gives and continue; per-client steps like dates and notes take a few minutes for a large list.
 - A write refused for lack of permission: name the permission line above and stop.
+- `import_metric_history` is not available: the clients are already added. Say the history needs "Log and change measurements and their goals." and offer to import it after reconnecting.

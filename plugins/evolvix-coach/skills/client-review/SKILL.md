@@ -4,14 +4,14 @@ description: >
   Answers how one Evolvix client is doing: food logged against the targets per day type, training
   done against the plan, weight and measurement trends, habits and check-ins, with at most three
   suggestions and an optional message draft. Use whenever an Evolvix coach asks how a client is
-  doing, wants to prepare for a call, asks for a progress or end-of-block report, or asks whether a
-  client is eating enough, training enough or losing weight, even for a quick "how's Ada?". Dutch:
-  "hoe gaat het met Ada", "voortgangsrapport", "eet ze genoeg".
+  doing, asks for a progress or end-of-block report, or asks whether a client is eating enough,
+  training enough or losing weight, even for a quick "how's Ada?". Dutch: "hoe gaat het met Ada",
+  "voortgangsrapport", "eet ze genoeg".
 ---
 
 # Client review
 
-One client, on demand: before a call, at the end of a training block, when something feels off, or before a renewal. The skill starts from one overview call and opens only the areas the question or the overview points to, then reports what changed, what is working and what to try next.
+One client, on demand: at the end of a training block, when something feels off, or before a renewal. For a call or check-in review with the client, the prep-client-call skill builds the agenda and keeps the notes. The skill starts from one overview call and opens only the areas the question or the overview points to, then reports what changed, what is working and what to try next.
 
 ## Ground rules
 
