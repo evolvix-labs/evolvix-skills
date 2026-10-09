@@ -240,6 +240,30 @@
       "summary": "Lists clients whose habit completion over the last days is below a percentage, lowest first."
     },
     {
+      "name": "finish_call",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "destructive",
+      "summary": "Finishes a call."
+    },
+    {
+      "name": "flag_for_call",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds something to the client's next call: a check-in answer, a message, a chart point, a food day or a note.",
+      "values": [
+        "checkin_answer",
+        "food_day",
+        "message",
+        "metric_entry",
+        "note",
+        "other"
+      ]
+    },
+    {
       "name": "get_activity_summary",
       "scopes": [
         "metrics:read"
@@ -258,6 +282,18 @@
       ],
       "kind": "read",
       "summary": "Returns one automation and its steps."
+    },
+    {
+      "name": "get_call_brief",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the agenda of a call with a client as data: the header, what changed since the last call, the latest check-in with the answers that moved most, adherence, open questions, flagged items and the last call's agreements.",
+      "values": [
+        "call",
+        "review"
+      ]
     },
     {
       "name": "get_checkin",
@@ -492,6 +528,19 @@
       ],
       "kind": "write",
       "summary": "Adds up to 200 clients."
+    },
+    {
+      "name": "import_metric_history",
+      "scopes": [
+        "metrics:write"
+      ],
+      "kind": "write",
+      "summary": "Imports up to 2000 dated measurements for one client, such as daily weights from a spreadsheet.",
+      "dryRunDefault": true,
+      "values": [
+        "replace",
+        "skip"
+      ]
     },
     {
       "name": "list_automation_actions",
@@ -1085,7 +1134,17 @@
         "chat:write"
       ],
       "kind": "destructive",
-      "summary": "Sends a chat message."
+      "summary": "Sends a chat message.",
+      "values": [
+        "collection",
+        "document",
+        "form",
+        "habit",
+        "nutrition_plan",
+        "program",
+        "recipe",
+        "resource"
+      ]
     },
     {
       "name": "set_daily_targets",
@@ -1173,6 +1232,18 @@
       ],
       "kind": "write",
       "summary": "Snoozes one attention reason for 1, 3, or 7 days."
+    },
+    {
+      "name": "start_call",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Starts a call with a client, or a check-in review with mode review, and returns it.",
+      "values": [
+        "call",
+        "review"
+      ]
     },
     {
       "name": "start_checkin",
