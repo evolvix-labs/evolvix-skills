@@ -2,6 +2,33 @@
   "server": "https://api.evolvix.app/mcp",
   "tools": [
     {
+      "name": "add_cardio_entry",
+      "scopes": [
+        "habits:write"
+      ],
+      "kind": "write",
+      "summary": "Records cardio done without a watch: a day, minutes and an activity type.",
+      "values": [
+        "cycling",
+        "elliptical",
+        "hiit",
+        "other",
+        "rowing",
+        "running",
+        "stairs",
+        "swimming",
+        "walking"
+      ]
+    },
+    {
+      "name": "add_client_event",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a date to a client's timeline, such as a show, a photoshoot or a holiday."
+    },
+    {
       "name": "add_client_note",
       "scopes": [
         "clients:write"
@@ -47,7 +74,16 @@
         "habits:write"
       ],
       "kind": "write",
-      "summary": "Gives a client up to 20 habits at once."
+      "summary": "Gives a client up to 20 habits at once.",
+      "values": [
+        "amount",
+        "cardio",
+        "check",
+        "daily",
+        "minutes",
+        "sessions",
+        "weekly"
+      ]
     },
     {
       "name": "assign_plan_set",
@@ -269,7 +305,7 @@
         "metrics:read"
       ],
       "kind": "read",
-      "summary": "Returns a client's steps, active energy, sleep, resting heart rate and workouts for a week or month, each compared with the period before.",
+      "summary": "Returns a client's steps, active energy, sleep, resting heart rate and workouts for a week or month, each compared with the period before, and the cardio minutes and sessions per week from watch workouts, Evolvix training and entries.",
       "values": [
         "month",
         "week"
@@ -312,6 +348,14 @@
       "summary": "Returns one question's answers across a form's sent check-ins, oldest first."
     },
     {
+      "name": "get_checkin_week",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a daily check-in form as a week grid: a row per question, a cell per day, and per question the week's average, most common answer or count set against the week before."
+    },
+    {
       "name": "get_client",
       "scopes": [
         "clients:read"
@@ -326,6 +370,14 @@
       ],
       "kind": "read",
       "summary": "Reads one client's overview for a date and a week."
+    },
+    {
+      "name": "get_client_timeline",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a client's timeline: the phases that touch the range and the events inside it, and where the client stands today."
     },
     {
       "name": "get_client_workout",
@@ -581,6 +633,24 @@
         "manual",
         "onboarding",
         "sequence"
+      ]
+    },
+    {
+      "name": "list_chat_references",
+      "scopes": [
+        "chat:read"
+      ],
+      "kind": "read",
+      "summary": "Lists what a message can point at, one type at a time.",
+      "values": [
+        "collection",
+        "document",
+        "form",
+        "habit",
+        "nutrition_plan",
+        "program",
+        "recipe",
+        "resource"
       ]
     },
     {
@@ -975,7 +1045,7 @@
         "library:read"
       ],
       "kind": "read",
-      "summary": "Reads pasted workout text, one exercise per line like \"Back squat 4x6 92.5kg, rest 120s\", and matches each line to the exercise library."
+      "summary": "Reads pasted workout text, one exercise per line like \"Back squat 4x6 92.5kg, rest 120s\" or \"Bench press 3x8-10 @ RIR 2, tempo 3010\", and matches each line to the exercise library."
     },
     {
       "name": "pause_client",
@@ -1144,6 +1214,23 @@
         "program",
         "recipe",
         "resource"
+      ]
+    },
+    {
+      "name": "set_client_phase",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a phase to a client's timeline, or with phaseId changes that phase.",
+      "values": [
+        "bulk",
+        "cut",
+        "maintenance",
+        "other",
+        "peak_week",
+        "recovery",
+        "reverse"
       ]
     },
     {
@@ -1350,7 +1437,16 @@
         "habits:write"
       ],
       "kind": "write",
-      "summary": "Updates a habit."
+      "summary": "Updates a habit.",
+      "values": [
+        "amount",
+        "cardio",
+        "check",
+        "daily",
+        "minutes",
+        "sessions",
+        "weekly"
+      ]
     },
     {
       "name": "update_task",
