@@ -13,7 +13,7 @@ Connect the Evolvix connector from the plugin's Connectors tab (or `/mcp` in Cla
 | weekly-checkin-review | "Review this weekend's check-ins." |
 | client-review | "How is Ada doing?" |
 | prep-client-call | "Prep my call with Dennis." "Bereid mijn check-in gesprek met Dennis voor." |
-| nutrition-by-training-day | "Put Ada on 2,100 on training days and 1,800 on rest days." |
+| nutrition-by-training-day | "Put Ada on 2,100 on training days and 1,800 on rest days." "Put her training-day menu in." |
 | program-builder | "Build Ben a 4-day upper/lower for 8 weeks." |
 | add-clients | "Here is my client list from my old app." |
 | import-client-history | "Import Dennis's weights from this sheet." "Zet de gewichten uit mijn Excel over." |
