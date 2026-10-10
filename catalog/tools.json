@@ -37,6 +37,22 @@
       "summary": "Adds a note on a client."
     },
     {
+      "name": "add_meal",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a meal to a meal plan."
+    },
+    {
+      "name": "add_meal_option",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a dish to a meal: a copy of a recipe scaled to servings, foods, or numbers entered by hand."
+    },
+    {
       "name": "add_workout_to_program",
       "scopes": [
         "library:write"
@@ -199,6 +215,14 @@
       ],
       "kind": "write",
       "summary": "Creates a company day type such as Legs or High carb."
+    },
+    {
+      "name": "create_nutrition_plan",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a meal or macros plan for a client, empty or as a copy of another of their plans."
     },
     {
       "name": "create_program",
@@ -500,6 +524,14 @@
       ],
       "kind": "read",
       "summary": "Returns one day's nutrition: the day type, which plan applies after fallback, the target, and the meals."
+    },
+    {
+      "name": "get_nutrition_plan",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a plan with every food, unit, and nutrient per line, dish, meal, and day, compared with the client's targets."
     },
     {
       "name": "get_nutrition_settings",
@@ -1183,12 +1215,43 @@
       ]
     },
     {
+      "name": "search_foods",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Searches the food catalog: shared foods plus your company's.",
+      "values": [
+        "all",
+        "client",
+        "company",
+        "shared"
+      ]
+    },
+    {
       "name": "search_log_foods",
       "scopes": [
         "nutrition:read"
       ],
       "kind": "read",
       "summary": "Searches the foods this client can log: shared foods plus the company's."
+    },
+    {
+      "name": "search_recipes",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Searches recipes: your company's and the shared Evolvix set, with kcal and protein per serving.",
+      "values": [
+        "all",
+        "company",
+        "kcal",
+        "name",
+        "platform",
+        "protein",
+        "updated"
+      ]
     },
     {
       "name": "send_client_invitation",
@@ -1447,6 +1510,14 @@
         "sessions",
         "weekly"
       ]
+    },
+    {
+      "name": "update_meal_option",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Edits a dish: name, servings, foods, steps, or numbers by hand."
     },
     {
       "name": "update_task",

@@ -1,7 +1,7 @@
 {
   "name": "evolvix-coach",
   "displayName": "Evolvix for coaches",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Review check-ins, answer messages, prepare client calls, set nutrition by training day, build programs, import a client's past weights, and keep track of every client through the Evolvix connector. Nothing reaches a client without your yes.",
   "author": {
     "name": "Evolvix",

@@ -17,7 +17,7 @@ Two plugins, one for each side of the coaching relationship. Each skill is one r
 | weekly-checkin-review | "Review this weekend's check-ins." |
 | client-review | "How is Ada doing?" "Make a 12-week report for Ben." |
 | prep-client-call | "Prep my call with Dennis." "Bereid mijn check-in gesprek met Dennis voor." |
-| nutrition-by-training-day | "Put Ada on 2,100 on training days and 1,800 on rest days, legs plus 300." |
+| nutrition-by-training-day | "Put Ada on 2,100 on training days and 1,800 on rest days, legs plus 300." "Put her training-day and rest-day menus in." |
 | program-builder | "Build Ben a 4-day upper/lower for 8 weeks and start him Monday." |
 | add-clients | "Add Ada, ada@example.com." "Here's my client list from HubFit." |
 | import-client-history | "Import Dennis's weights from this sheet." "Zet de gewichten uit mijn Excel over." |
