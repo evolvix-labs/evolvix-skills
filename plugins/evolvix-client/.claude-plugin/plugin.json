@@ -1,7 +1,7 @@
 {
   "name": "evolvix-client",
   "displayName": "Evolvix for clients",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Log food, training and weight from a sentence, do your check-in, and see today's plan from your Evolvix coach. Claude shows what it will save and asks first.",
   "author": {
     "name": "Evolvix",
