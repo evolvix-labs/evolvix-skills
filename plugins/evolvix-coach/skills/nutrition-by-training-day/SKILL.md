@@ -3,16 +3,18 @@ name: nutrition-by-training-day
 description: >
   Sets an Evolvix client's calorie and macro targets per day type (training, rest, legs, or the
   coach's own named days such as push, pull, high, low or refeed), maps weekdays to day types, and
-  handles one-off days, always with a week preview before anything is saved. Use whenever an
-  Evolvix coach wants to set or change a client's targets, says things like "2,100 on training days
-  and 1,800 on rest days", "legs plus 300", "make Saturday a refeed", "she travels Thursday, treat
-  it as rest", or wants to start a client on a plan set. Dutch: "macro's instellen", "trainingsdag
-  en rustdag", "zet haar op 1800 kcal".
+  handles one-off days, always with a week preview before anything is saved. It also builds a
+  client's meal plan per day type (meals, times and dishes) from a description or a spreadsheet and
+  links it to the day type. Use whenever an Evolvix coach wants to set or change a client's targets,
+  says things like "2,100 on training days and 1,800 on rest days", "legs plus 300", "make Saturday
+  a refeed", "she travels Thursday, treat it as rest", wants to start a client on a plan set, or
+  wants a meal plan built or imported ("put her training-day menu in"). Dutch: "macro's
+  instellen", "trainingsdag en rustdag", "zet haar op 1800 kcal", "voedingsschema invoeren".
 ---
 
 # Nutrition by training day
 
-In Evolvix the day type decides the targets: a training day can carry more calories than a rest day, and a leg day more again. When the client trains from a program, the training calendar decides each day's type; weekday rules decide the days training does not. This skill sets the numbers per day type, the weekday rules and one-off overrides, and shows a normal week before saving anything.
+In Evolvix the day type decides the targets: a training day can carry more calories than a rest day, and a leg day more again. When the client trains from a program, the training calendar decides each day's type; weekday rules decide the days training does not. This skill sets the numbers per day type, the weekday rules and one-off overrides, builds the meal plan a day type follows, and shows a normal week before saving anything.
 
 ## Ground rules
 
@@ -46,6 +48,20 @@ In Evolvix the day type decides the targets: a training day can carry more calor
 **One-off days** (a wedding, a race, travel, a refeed): `set_day_override` with the date, the `dayTypeKey` and `include` nutrition. It runs as a dry run first: show which days change and their calories before and after, then call again with `dryRun` false after a yes. Undo with `clear_day_override`.
 
 **A meal plan on a day type** (physique clients with a full menu per day): find the plan id with `list_nutrition_plans`, then `set_daily_targets` with the `dayTypeKey` and `mealPlanId`. Leave the grams out to keep that day type's numbers. Preview with the dry run, then save with `dryRun` false.
+
+## Build a meal plan
+
+For a coach who describes a menu or hands over a spreadsheet with meals per day type (a training-day menu and a rest-day menu, say). Building and editing a plan needs "Change client nutrition setups, plans, day types, and food logs." The client sees a plan only once a day type links to it, so building is safe; linking is the step that needs a yes.
+
+1. **Read the menu and check it.** List each day type's meals with their time and every line as food, amount and unit. Lines joined by "or" are alternatives for the same meal. Add up each day and compare with that day type's target from `get_nutrition_setup`. Show the menu as one table per day type with the day total next to the target, and ask once before building.
+2. **Check for an existing plan.** `list_nutrition_plans` for the client. A plan with the same name is probably an earlier import: ask whether to add to it or start a new one.
+3. **One plan per day type.** `create_nutrition_plan` with `kind` meal and a name the coach will recognise ("Training day", "Rest day"). Keep the id and the revision it returns.
+4. **Meals.** `add_meal` per meal in order, with `name` and `time` (HH:MM). Every write returns the plan with a new revision; send that as `baseRevision` on the next call.
+5. **Dishes.** For each meal, `add_meal_option` with the meal's `foods`: every line gets a `foodId` from `search_foods` and an `amount` in that food's unit, or a `portionId` for "2 eggs" or "1 slice". Pick the match that fits the name, brand and macros. When no match is confident, list the two or three candidates and ask. A line that is a recipe in the coach's library goes in as `recipeId` with `servings` (find it with `search_recipes`). Alternatives become extra options on the same meal; the first stays the default. Use `manual` numbers only when a food cannot be found, and say which lines used them.
+6. **Compare.** `get_nutrition_plan` returns the day totals and the difference with the day type's target. Report any macro more than 5 percent off and the line that causes it. Do not change amounts on your own to make it fit: the coach's menu is the plan.
+7. **Link.** `set_daily_targets` with the `dayTypeKey` and the `mealPlanId`, leaving the grams out to keep the targets. It runs as a dry run first: show the days that will follow the plan, then call again with `dryRun` false after a yes.
+
+Fix a single dish with `update_meal_option` (new `foods` or `servings`), again with the latest `baseRevision`. If a write fails halfway, read the plan with `get_nutrition_plan`, report which meals and dishes are in, and continue from the first one missing.
 
 **Undo** any of the above with `set_nutrition_setup` and the setup you kept in step 1, after a yes.
 
