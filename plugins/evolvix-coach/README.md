@@ -1,6 +1,6 @@
 # Evolvix for coaches
 
-Ten skills that let Claude do the weekly coaching work in [Evolvix](https://evolvix.app) through the Evolvix connector: plan the day, answer messages, review check-ins, review one client, prepare and run a client call, set nutrition by training day, build and assign programs, add or import clients, import a client's past weights and measurements, and design automations.
+Eleven skills that let Claude do the weekly coaching work in [Evolvix](https://evolvix.app) through the Evolvix connector: plan the day, answer messages, review check-ins, review one client, prepare and run a client call, set nutrition by training day, build and assign programs, add or import clients, import a client's past weights and measurements, build check-in forms, and design automations.
 
 ## Use it
 
@@ -18,6 +18,7 @@ Connect the Evolvix connector from the plugin's Connectors tab (or `/mcp` in Cla
 | add-clients | "Here is my client list from my old app." |
 | import-client-history | "Import Dennis's weights from this sheet." "Zet de gewichten uit mijn Excel over." |
 | automation-designer | "When a client misses two check-ins, message them and give me a task." |
+| form-builder | "Make my daily check-in like this sheet." "Zet alle schalen op 1 tot 5." |
 
 Claude drafts and previews. Nothing reaches a client, changes a plan, or is published until you say yes. Check-in feedback is saved as a draft that you send from the Evolvix app, and the summary of a call stays a draft until you say to send it.
 
