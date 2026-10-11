@@ -37,6 +37,23 @@
       "summary": "Adds a note on a client."
     },
     {
+      "name": "add_form_question",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Adds one question at the end or at a position.",
+      "values": [
+        "any_of",
+        "equals",
+        "gte",
+        "higher",
+        "lower",
+        "lte",
+        "neutral"
+      ]
+    },
+    {
       "name": "add_meal",
       "scopes": [
         "nutrition:write"
@@ -53,12 +70,65 @@
       "summary": "Adds a dish to a meal: a copy of a recipe scaled to servings, foods, or numbers entered by hand."
     },
     {
+      "name": "add_supplement_to_plan",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Adds one supplement to a client's plan as a new version from effectiveOn (same default and future_version rule as set_supplement_plan), keeping every other line.",
+      "values": [
+        "afternoon",
+        "bed",
+        "evening",
+        "every",
+        "every_meal",
+        "intra_workout",
+        "meal",
+        "morning",
+        "post_workout",
+        "pre_workout",
+        "rest",
+        "time",
+        "training",
+        "waking"
+      ]
+    },
+    {
       "name": "add_workout_to_program",
       "scopes": [
         "library:write"
       ],
       "kind": "write",
       "summary": "Puts a copy of a library workout, or a new empty workout, on a day of a week."
+    },
+    {
+      "name": "adjust_peak_week_day",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Adjusts one peak week day from today on, such as carbs +50 g or water -0.5 L: numbers are added to the plan and negative takes away; dayTypeKey replaces the day type."
+    },
+    {
+      "name": "apply_peak_week",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "destructive",
+      "summary": "Plans the client's peak week for a show date from a template or from days sent here.",
+      "dryRunDefault": true,
+      "values": [
+        "bedtime",
+        "depletion",
+        "evening",
+        "intra_workout",
+        "morning",
+        "post_workout",
+        "pre_workout",
+        "pump",
+        "rest",
+        "with_meal"
+      ]
     },
     {
       "name": "apply_sequence",
@@ -75,6 +145,14 @@
       ],
       "kind": "write",
       "summary": "Archives an automation and stops its enrollments."
+    },
+    {
+      "name": "archive_form",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Archives a form so it cannot be assigned."
     },
     {
       "name": "assign_form_to_clients",
@@ -161,6 +239,14 @@
       ]
     },
     {
+      "name": "clear_micronutrient_target",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Clears this client's own target for one nutrient, so the reference target applies again."
+    },
+    {
       "name": "compare_checkins",
       "scopes": [
         "checkins:read"
@@ -193,6 +279,14 @@
       "summary": "Copies a day's entries, or only the listed meals, to another date as new entries."
     },
     {
+      "name": "copy_off_product",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Copies an Open Food Facts product into your food library per 100 g or ml, with its barcode and serving, and returns the food."
+    },
+    {
       "name": "create_automation_rule",
       "scopes": [
         "automations:write"
@@ -217,6 +311,35 @@
       "summary": "Creates a company day type such as Legs or High carb."
     },
     {
+      "name": "create_form",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a form at revision 1, optionally with questions.",
+      "values": [
+        "any_of",
+        "equals",
+        "gte",
+        "higher",
+        "lower",
+        "lte",
+        "neutral"
+      ]
+    },
+    {
+      "name": "create_included_block",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Includes a section template (sectionId, any revision) automatically in every workout of a day type (dayTypeId) or with a training tag (tagId), at the start or the end.",
+      "values": [
+        "end",
+        "start"
+      ]
+    },
+    {
       "name": "create_nutrition_plan",
       "scopes": [
         "nutrition:write"
@@ -231,6 +354,14 @@
       ],
       "kind": "write",
       "summary": "Creates a Calendar or Fixed program with one empty first week."
+    },
+    {
+      "name": "create_supplement",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Adds a supplement to the company library."
     },
     {
       "name": "create_task",
@@ -257,6 +388,14 @@
       "summary": "Deletes one entry."
     },
     {
+      "name": "delete_included_block",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Stops including a reusable block."
+    },
+    {
       "name": "delete_metric_entry",
       "scopes": [
         "metrics:write"
@@ -279,6 +418,14 @@
       ],
       "kind": "write",
       "summary": "Saves feedback on a sent check-in as a draft for the coach."
+    },
+    {
+      "name": "duplicate_form",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Copies a form's current revision under a new name."
     },
     {
       "name": "edit_client_workout",
@@ -329,7 +476,7 @@
         "metrics:read"
       ],
       "kind": "read",
-      "summary": "Returns a client's steps, active energy, sleep, resting heart rate and workouts for a week or month, each compared with the period before, and the cardio minutes and sessions per week from watch workouts, Evolvix training and entries.",
+      "summary": "Returns a client's steps, active energy, sleep, resting heart rate and workouts for a week or month, each compared with the period before, the recovery values per day (HRV, sleep stages, bed and wake time, respiratory rate, blood oxygen, VO2 max), and the cardio minutes and sessions per week from watch workouts, Evolvix training and entries.",
       "values": [
         "month",
         "week"
@@ -394,6 +541,14 @@
       ],
       "kind": "read",
       "summary": "Reads one client's overview for a date and a week."
+    },
+    {
+      "name": "get_client_peak_week",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the client's peak week: the one running today, else the next, else the last."
     },
     {
       "name": "get_client_timeline",
@@ -465,6 +620,14 @@
       "summary": "Returns one day's food log: entries, totals, per-meal groups, the day's snapshot target, the note, skips, and choices."
     },
     {
+      "name": "get_form",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a form with the questions of its current revision, or of a past revision when revision is given."
+    },
+    {
       "name": "get_grocery_list",
       "scopes": [
         "nutrition:read"
@@ -515,6 +678,22 @@
       ],
       "kind": "read",
       "summary": "Returns the week table: every tracked metric by day, the week's average, and the change from the week before."
+    },
+    {
+      "name": "get_micronutrient_day",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one day's 26 vitamins and minerals: intake from the food log, the daily target from the company's EFSA or USDA table by the client's sex and age (B1 and B3 per MJ of the day's calorie target under EFSA), the upper limit, and a status."
+    },
+    {
+      "name": "get_micronutrient_summary",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns each vitamin and mineral over up to 31 days: how many logged days it was met, low, over the upper limit or incomplete, the average intake and percentage, and a status per day."
     },
     {
       "name": "get_nutrition_day",
@@ -575,6 +754,30 @@
       "summary": "Returns one session with its exercises, sets, previous performance, current records, and the records it set."
     },
     {
+      "name": "get_supplement_adherence",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns how many scheduled intakes a client took, skipped or left open per day and per supplement over a range up to today."
+    },
+    {
+      "name": "get_supplement_day",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns what a client takes on one day, grouped by moment in day order and resolved for that day's day type: training days include the workout moments."
+    },
+    {
+      "name": "get_supplement_plan",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a client's supplement plan: sections of lines, each a library supplement with an amount (or a range with amountMax), a unit, a note, product links and discount code, and the moments to take it (on waking, morning, a meal, every meal, afternoon, pre, intra or post workout, evening, before bed with minutes before, or a clock time) on every day, training days or rest days."
+    },
+    {
       "name": "get_todays_habits",
       "scopes": [
         "habits:read"
@@ -589,6 +792,14 @@
       ],
       "kind": "read",
       "summary": "Returns each date of a range (at most 62 days) with its day type, its client workouts, and the sessions performed."
+    },
+    {
+      "name": "get_training_logbook",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the client's log book, newest week first: per workout name, each exercise with its sessions week by week (load x reps per set, the top set, volume, and a trend against the session before)."
     },
     {
       "name": "get_training_stats",
@@ -625,6 +836,14 @@
         "replace",
         "skip"
       ]
+    },
+    {
+      "name": "link_session_to_workout",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "write",
+      "summary": "Answers a finished ad hoc session's plannedMatch: clientWorkoutId counts it as that planned workout (done, and the day takes its day type) after the client or coach says yes; dismiss true records a no and stops asking."
     },
     {
       "name": "list_automation_actions",
@@ -775,6 +994,7 @@
         "cancelled",
         "checkin-overdue",
         "checkin-pending",
+        "coaching-low",
         "current",
         "inactive",
         "invited",
@@ -827,6 +1047,14 @@
       ]
     },
     {
+      "name": "list_form_templates",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the platform check-in and questionnaire templates with their question labels."
+    },
+    {
       "name": "list_forms",
       "scopes": [
         "library:read"
@@ -845,6 +1073,22 @@
       ],
       "kind": "read",
       "summary": "Lists habit templates: the company's own and the platform's, with how many clients use each."
+    },
+    {
+      "name": "list_included_blocks",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the reusable blocks of your company: section templates included automatically at the start or end of every workout with a day type or a training tag."
+    },
+    {
+      "name": "list_metrics",
+      "scopes": [
+        "metrics:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the company's metric catalog: built-in metrics and the company's own."
     },
     {
       "name": "list_missed_checkins",
@@ -881,6 +1125,14 @@
         "macros",
         "meal"
       ]
+    },
+    {
+      "name": "list_peak_week_templates",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the company's peak week templates: the plan of each day relative to the show (offset 0 is the show day, -7 a week before): day type, macro changes in grams, water, sodium, potassium, fibre, training focus, cardio, posing and notes."
     },
     {
       "name": "list_performed_exercises",
@@ -949,6 +1201,14 @@
       ],
       "kind": "read",
       "summary": "Lists the client's workout sessions, newest first, with sets, volume, difficulty, and the number of records each set."
+    },
+    {
+      "name": "list_supplements",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the company's supplement library: name, brand, default unit, category, discount code and product links, with how many clients' plans list each."
     },
     {
       "name": "list_tasks",
@@ -1026,6 +1286,19 @@
       ],
       "kind": "write",
       "summary": "Logs a plan meal as eaten: every line of the day's chosen option, or the default option when none was chosen, scaled by portion from 0.25 to 2."
+    },
+    {
+      "name": "log_supplement_intake",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Ticks one scheduled intake of a day as taken or skipped, or clears it with open.",
+      "values": [
+        "open",
+        "skipped",
+        "taken"
+      ]
     },
     {
       "name": "log_workout",
@@ -1125,6 +1398,14 @@
       "summary": "Publishes an automation so it can enroll clients."
     },
     {
+      "name": "remove_form_question",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Removes a question from new check-ins."
+    },
+    {
       "name": "remove_program_from_client",
       "scopes": [
         "training:write"
@@ -1142,6 +1423,14 @@
       ],
       "kind": "destructive",
       "summary": "Opens a missed or skipped check-in again until the end of closesOn."
+    },
+    {
+      "name": "reorder_form_questions",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Sets the question order."
     },
     {
       "name": "resend_invitation",
@@ -1229,12 +1518,28 @@
       ]
     },
     {
+      "name": "search_log_catalog",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Searches what this client can log: foods first, then Open Food Facts products, as the company's food access allows."
+    },
+    {
       "name": "search_log_foods",
       "scopes": [
         "nutrition:read"
       ],
       "kind": "read",
-      "summary": "Searches the foods this client can log: shared foods plus the company's."
+      "summary": "Searches the foods this client can log: shared foods plus the company's, or only the company's when food access says so."
+    },
+    {
+      "name": "search_off_products",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Searches Open Food Facts products by name and brand, best match first."
     },
     {
       "name": "search_recipes",
@@ -1349,12 +1654,34 @@
       "summary": "Sets the goal for one metric with a start and goal date."
     },
     {
+      "name": "set_micronutrient_target",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Sets this client's own daily target for one nutrient, by catalog key such as iron_mg, in the unit get_micronutrient_day shows (vitamin D in µg)."
+    },
+    {
       "name": "set_nutrition_setup",
       "scopes": [
         "nutrition:write"
       ],
       "kind": "destructive",
       "summary": "Replaces the nutrition pattern for a relationship."
+    },
+    {
+      "name": "set_supplement_plan",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces a client's supplement plan from effectiveOn as a new version; earlier days keep the plan they had.",
+      "values": [
+        "afternoon",
+        "evening",
+        "midday",
+        "morning"
+      ]
     },
     {
       "name": "skip_checkin_due",
@@ -1444,6 +1771,14 @@
       "summary": "Previews runs due in the next 14 days."
     },
     {
+      "name": "unarchive_form",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Makes an archived form editable and assignable again."
+    },
+    {
       "name": "unlog_habit",
       "scopes": [
         "habits:write"
@@ -1495,6 +1830,31 @@
       "summary": "Changes one entry."
     },
     {
+      "name": "update_form",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Changes the name, description, cover, or default schedule."
+    },
+    {
+      "name": "update_form_question",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Changes some fields of one question.",
+      "values": [
+        "any_of",
+        "equals",
+        "gte",
+        "higher",
+        "lower",
+        "lte",
+        "neutral"
+      ]
+    },
+    {
       "name": "update_habit",
       "scopes": [
         "habits:write"
@@ -1520,12 +1880,28 @@
       "summary": "Edits a dish: name, servings, foods, steps, or numbers by hand."
     },
     {
+      "name": "update_supplement",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces a supplement of the library, its product links and discount code included."
+    },
+    {
       "name": "update_task",
       "scopes": [
         "tasks:write"
       ],
       "kind": "write",
       "summary": "Updates a task."
+    },
+    {
+      "name": "use_form_template",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Copies a platform template into the company as a form at revision 1."
     }
   ]
 }

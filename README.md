@@ -1,6 +1,6 @@
 # Evolvix skills for Claude
 
-Skills that teach Claude to do the weekly coaching work in [Evolvix](https://evolvix.app): reviewing check-ins, answering messages, preparing client calls, setting nutrition by training day, building programs, moving a client's history over from another app, and, for clients, logging a day from one sentence.
+Skills that teach Claude to do the weekly coaching work in [Evolvix](https://evolvix.app): reviewing check-ins, answering messages, preparing client calls, setting nutrition by training day, building programs, building check-in forms, moving a client's history over from another app, and, for clients, logging a day from one sentence.
 
 The Evolvix connector gives Claude the tools. These skills give it the playbook: which tools to call in which order, what good coaching judgment looks like, and when to stop and ask. Claude drafts and previews. Nothing reaches a client, changes a plan, or deletes anything until you say yes.
 
@@ -22,6 +22,7 @@ Two plugins, one for each side of the coaching relationship. Each skill is one r
 | add-clients | "Add Ada, ada@example.com." "Here's my client list from HubFit." |
 | import-client-history | "Import Dennis's weights from this sheet." "Zet de gewichten uit mijn Excel over." |
 | automation-designer | "When a client misses two check-ins, message them and give me a task." |
+| form-builder | "Make my daily check-in like this sheet." "Zet alle schalen op 1 tot 5." |
 
 **Evolvix for clients** (`evolvix-client`)
 
