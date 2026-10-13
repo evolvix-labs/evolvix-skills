@@ -45,12 +45,25 @@
       "summary": "Adds one question at the end or at a position.",
       "values": [
         "any_of",
+        "choice",
+        "date",
+        "duration",
         "equals",
         "gte",
         "higher",
         "lower",
         "lte",
-        "neutral"
+        "media",
+        "metric",
+        "neutral",
+        "number",
+        "progress_photos",
+        "scale",
+        "sex",
+        "signature",
+        "stars",
+        "text",
+        "yes_no"
       ]
     },
     {
@@ -145,6 +158,14 @@
       ],
       "kind": "write",
       "summary": "Archives an automation and stops its enrollments."
+    },
+    {
+      "name": "archive_exercise",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Archives a company exercise."
     },
     {
       "name": "archive_form",
@@ -311,6 +332,14 @@
       "summary": "Creates a company day type such as Legs or High carb."
     },
     {
+      "name": "create_exercise",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Creates a company exercise with at least one primary muscle."
+    },
+    {
       "name": "create_form",
       "scopes": [
         "library:write"
@@ -319,12 +348,25 @@
       "summary": "Creates a form at revision 1, optionally with questions.",
       "values": [
         "any_of",
+        "choice",
+        "date",
+        "duration",
         "equals",
         "gte",
         "higher",
         "lower",
         "lte",
-        "neutral"
+        "media",
+        "metric",
+        "neutral",
+        "number",
+        "progress_photos",
+        "scale",
+        "sex",
+        "signature",
+        "stars",
+        "text",
+        "yes_no"
       ]
     },
     {
@@ -377,7 +419,31 @@
         "library:write"
       ],
       "kind": "write",
-      "summary": "Creates a library workout (or a section template with ownerKind section) from blocks of lines and sets."
+      "summary": "Creates a library workout (or a section template with ownerKind section) from blocks of lines and sets.",
+      "values": [
+        "back_off",
+        "bfr",
+        "circuit",
+        "distance_time",
+        "drop",
+        "failure",
+        "kg",
+        "library",
+        "loaded_stretch",
+        "myo_reps",
+        "pct",
+        "reps",
+        "rest_pause",
+        "section",
+        "single",
+        "superset",
+        "time",
+        "time_only",
+        "top_set",
+        "warmup",
+        "weight_reps",
+        "working"
+      ]
     },
     {
       "name": "delete_food_log_entry",
@@ -420,6 +486,14 @@
       "summary": "Saves feedback on a sent check-in as a draft for the coach."
     },
     {
+      "name": "duplicate_exercise",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Saves a shared or company exercise as a new company exercise you can edit."
+    },
+    {
       "name": "duplicate_form",
       "scopes": [
         "library:write"
@@ -435,7 +509,29 @@
       "kind": "destructive",
       "summary": "Saves this client's copy of a workout as a new revision and marks it customised.",
       "values": [
-        "nutrition"
+        "back_off",
+        "bfr",
+        "circuit",
+        "distance_time",
+        "drop",
+        "failure",
+        "kg",
+        "library",
+        "loaded_stretch",
+        "myo_reps",
+        "nutrition",
+        "pct",
+        "reps",
+        "rest_pause",
+        "section",
+        "single",
+        "superset",
+        "time",
+        "time_only",
+        "top_set",
+        "warmup",
+        "weight_reps",
+        "working"
       ]
     },
     {
@@ -594,6 +690,22 @@
       ],
       "kind": "read",
       "summary": "Returns the weekday and date rules used on days training does not decide."
+    },
+    {
+      "name": "get_exercise",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Returns one exercise with muscles, images, and where it is used."
+    },
+    {
+      "name": "get_exercise_facets",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Counts the filter choices (type, level, equipment, primary muscle) over the exercises you can use."
     },
     {
       "name": "get_exercise_history",
@@ -1678,9 +1790,20 @@
       "summary": "Replaces a client's supplement plan from effectiveOn as a new version; earlier days keep the plan they had.",
       "values": [
         "afternoon",
+        "bed",
         "evening",
+        "every",
+        "every_meal",
+        "intra_workout",
+        "meal",
         "midday",
-        "morning"
+        "morning",
+        "post_workout",
+        "pre_workout",
+        "rest",
+        "time",
+        "training",
+        "waking"
       ]
     },
     {
@@ -1771,6 +1894,14 @@
       "summary": "Previews runs due in the next 14 days."
     },
     {
+      "name": "unarchive_exercise",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Brings an archived company exercise back."
+    },
+    {
       "name": "unarchive_form",
       "scopes": [
         "library:write"
@@ -1822,6 +1953,14 @@
       "summary": "Updates a client's names, dates, practice, or email."
     },
     {
+      "name": "update_exercise",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces a company exercise."
+    },
+    {
       "name": "update_food_log_entry",
       "scopes": [
         "nutrition:write"
@@ -1835,7 +1974,7 @@
         "library:write"
       ],
       "kind": "write",
-      "summary": "Changes the name, description, cover, or default schedule."
+      "summary": "Changes the name, description, cover, default schedule, or sheetPreset (the Google Sheets tracker layout a check-in form syncs into; an empty string turns it off)."
     },
     {
       "name": "update_form_question",
@@ -1846,12 +1985,25 @@
       "summary": "Changes some fields of one question.",
       "values": [
         "any_of",
+        "choice",
+        "date",
+        "duration",
         "equals",
         "gte",
         "higher",
         "lower",
         "lte",
-        "neutral"
+        "media",
+        "metric",
+        "neutral",
+        "number",
+        "progress_photos",
+        "scale",
+        "sex",
+        "signature",
+        "stars",
+        "text",
+        "yes_no"
       ]
     },
     {
