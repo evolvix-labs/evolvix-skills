@@ -9,7 +9,7 @@
     {
       "name": "evolvix-coach",
       "source": "./plugins/evolvix-coach",
-      "description": "For coaches: review check-ins, answer messages, prepare client calls, set nutrition by training day, build programs, import a client's past weights, build check-in forms, and keep track of every client through the Evolvix connector.",
+      "description": "For coaches: review check-ins, answer messages, prepare client calls, set nutrition by training day, build programs, import a client's past weights, build check-in forms, keep the exercise library, and keep track of every client through the Evolvix connector.",
       "category": "productivity",
       "tags": [
         "coaching",
