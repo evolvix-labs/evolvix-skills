@@ -176,6 +176,14 @@
       "summary": "Archives a form so it cannot be assigned."
     },
     {
+      "name": "archive_workout",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Archives a company workout."
+    },
+    {
       "name": "assign_form_to_clients",
       "scopes": [
         "checkins:write"
@@ -929,6 +937,14 @@
       ]
     },
     {
+      "name": "get_workout_template",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the current revision of a workout with blocks, lines, sets, alternatives, and estimates."
+    },
+    {
       "name": "import_clients",
       "scopes": [
         "clients:write"
@@ -1287,6 +1303,14 @@
       "summary": "Lists the programs on the client with their dates, status, and how many of their workouts are done."
     },
     {
+      "name": "list_program_copies",
+      "scopes": [
+        "library:read"
+      ],
+      "kind": "read",
+      "summary": "Lists client copies of the program's workouts with whether each is performed, customised, or eligible for a push."
+    },
+    {
       "name": "list_programs",
       "scopes": [
         "library:read"
@@ -1510,6 +1534,14 @@
       "summary": "Publishes an automation so it can enroll clients."
     },
     {
+      "name": "push_program_changes",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces client copies of one placed workout with the program's current version and recomputes their day types."
+    },
+    {
       "name": "remove_form_question",
       "scopes": [
         "library:write"
@@ -1527,6 +1559,14 @@
       "values": [
         "nutrition"
       ]
+    },
+    {
+      "name": "remove_program_workout",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Takes a workout off the program."
     },
     {
       "name": "reopen_checkin_due",
@@ -1910,6 +1950,14 @@
       "summary": "Makes an archived form editable and assignable again."
     },
     {
+      "name": "unarchive_workout",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Brings an archived company workout back."
+    },
+    {
       "name": "unlog_habit",
       "scopes": [
         "habits:write"
@@ -2046,6 +2094,38 @@
       ],
       "kind": "write",
       "summary": "Updates a task."
+    },
+    {
+      "name": "update_workout",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "destructive",
+      "summary": "Replaces the whole workout as a new revision.",
+      "values": [
+        "back_off",
+        "bfr",
+        "circuit",
+        "distance_time",
+        "drop",
+        "failure",
+        "kg",
+        "library",
+        "loaded_stretch",
+        "myo_reps",
+        "pct",
+        "reps",
+        "rest_pause",
+        "section",
+        "single",
+        "superset",
+        "time",
+        "time_only",
+        "top_set",
+        "warmup",
+        "weight_reps",
+        "working"
+      ]
     },
     {
       "name": "use_form_template",
