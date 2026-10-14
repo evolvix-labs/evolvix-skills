@@ -46,6 +46,8 @@ The coach describes the block in a sentence; this skill turns it into an Evolvix
 
 **One client's copy:** to swap an exercise for this client only, read it with `get_client_workout` and save it with `edit_client_workout`: the whole document back with its `baseRevision` and `include` nutrition.
 
+**Fix a workout (do not archive and rebuild):** read it with `get_workout_template` (a library workout by its id from `list_workouts`; a workout in a program by the id inside its placement in `get_program`) and save the whole document back with `update_workout` and its `baseRevision`, keeping each line's `progression` and each back-off set's `backoffPct`. Show what changes and ask first. A library edit reaches only new placements and schedules: programs and clients who already have the workout keep their copy. A program workout reaches clients who already have it only after a push: `list_program_copies` shows which copies are eligible (performed and customised ones are not), show that list, and after a yes call `push_program_changes` with the `placementId` and no `clientWorkoutIds`. Send `clientWorkoutIds` only for clients the coach names, since that also overwrites their customised copies. A push changes day types and so nutrition days; say so. To take a workout off a program use `remove_program_workout` after a yes (clients keep their copies until a push), and to retire a library workout use `archive_workout`; `unarchive_workout` undoes it.
+
 **Undo an assignment:** `remove_program_from_client` with the assignment id from `list_program_assignments` and a `from` date, as a dry run first. Finished sessions stay.
 
 ## Judgment

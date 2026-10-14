@@ -115,7 +115,7 @@ The skills are text instructions. They store nothing and send nothing anywhere. 
 python3 scripts/check.py --report
 ```
 
-The check validates the marketplace, both plugins, every skill's frontmatter, and that every tool a skill names exists in `catalog/tools.json`. The catalog lists the 149 curated tools and is generated from the Evolvix server's tool registry, so a renamed or removed tool fails the check instead of silently breaking a skill.
+The check validates the marketplace, both plugins, every skill's frontmatter, and that every tool a skill names exists in `catalog/tools.json`. The catalog lists the 208 curated tools and is generated from the Evolvix server's tool registry, so a renamed or removed tool fails the check instead of silently breaking a skill.
 
 ## License
 
