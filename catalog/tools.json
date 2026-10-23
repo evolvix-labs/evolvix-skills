@@ -2,6 +2,14 @@
   "server": "https://api.evolvix.app/mcp",
   "tools": [
     {
+      "name": "accept_join_request",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Accepts a join request: the person becomes a client with status invited."
+    },
+    {
       "name": "add_cardio_entry",
       "scopes": [
         "habits:write"
@@ -452,6 +460,14 @@
         "weight_reps",
         "working"
       ]
+    },
+    {
+      "name": "decline_join_request",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "destructive",
+      "summary": "Declines a join request: it is closed as cancelled and the person is not emailed."
     },
     {
       "name": "delete_food_log_entry",
@@ -922,6 +938,14 @@
       "summary": "Returns the client's log book, newest week first: per workout name, each exercise with its sessions week by week (load x reps per set, the top set, volume, and a trend against the session before)."
     },
     {
+      "name": "get_training_settings",
+      "scopes": [
+        "training:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the client's training mode and what they may do: how far ahead they see, and whether they may move, skip, or swap."
+    },
+    {
       "name": "get_training_stats",
       "scopes": [
         "training:read"
@@ -1209,6 +1233,14 @@
       ],
       "kind": "read",
       "summary": "Lists the reusable blocks of your company: section templates included automatically at the start or end of every workout with a day type or a training tag."
+    },
+    {
+      "name": "list_join_requests",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Lists the people who signed up through a join link and wait for a coach to accept them, newest first, with the check-in that holds their questionnaire answers."
     },
     {
       "name": "list_metrics",
@@ -1847,6 +1879,18 @@
       ]
     },
     {
+      "name": "set_training_mode",
+      "scopes": [
+        "training:write"
+      ],
+      "kind": "destructive",
+      "summary": "Sets the client's training mode (calendar or fixed) and permissions, as the Training settings page does.",
+      "dryRunDefault": true,
+      "values": [
+        "nutrition"
+      ]
+    },
+    {
       "name": "skip_checkin_due",
       "scopes": [
         "checkins:write"
@@ -2072,12 +2116,28 @@
       ]
     },
     {
+      "name": "update_meal",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Renames a meal or changes its time or note."
+    },
+    {
       "name": "update_meal_option",
       "scopes": [
         "nutrition:write"
       ],
       "kind": "write",
       "summary": "Edits a dish: name, servings, foods, steps, or numbers by hand."
+    },
+    {
+      "name": "update_program_details",
+      "scopes": [
+        "library:write"
+      ],
+      "kind": "write",
+      "summary": "Renames a program or changes its description, cover, tags, or type; send only the fields to change, with baseRevision from get_program."
     },
     {
       "name": "update_supplement",
