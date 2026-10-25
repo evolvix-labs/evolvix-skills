@@ -35,9 +35,9 @@ The brief itself only reads. The follow-ups need these permissions on the Evolvi
 
 ## Steps
 
-1. `get_coach_today` gives the counts (check-ins to review, tasks due, unread messages), one attention row per client with the reason and how long, the tasks due today, recent conversations, and the clients starting soon or ending soon. Start from it; it is one call instead of twenty.
+1. `get_coach_today` gives the counts (check-ins to review, tasks due, unread messages), one attention row per client with the reason and how long, the tasks due today, recent conversations, and the clients starting soon or ending soon. Start from it; it is one call instead of twenty. Check-ins that are only logged, the daily ones as a rule, are in neither the count nor the rows.
 2. `list_conversations` with `unread` true shows who is waiting for a reply and since when. Today's attention list only flags a message after 24 hours, so this catches the fresh ones.
-3. When the counts show check-ins to review, `list_checkin_inbox` gives the oldest waiting ones. Note how many and how old the oldest is.
+3. When the counts show check-ins to review, `list_checkin_inbox` gives the oldest waiting ones. Note how many and how old the oldest is. If most are daily check-ins, their assignment is still set to review: say so and hand over to the weekly-checkin-review skill, which can change that after a yes.
 4. When more tasks are due than Today listed, or the coach asks about overdue work, `list_tasks` with `status` open and `dueTo` today.
 5. Confirm the top three to five people before ranking them: `get_client_overview` and `list_client_notes`. A missed weigh-in from a client whose note says they are travelling is not urgent.
 6. Write the brief (format under What to show).
@@ -53,7 +53,7 @@ Run this on Mondays, or when the coach asks who has gone quiet, who missed a che
 
 1. Collect the signals: `list_missed_checkins` (check-ins whose window closed unsent in the last 30 days), `find_clients_missing_habits` with `days` 7 and `below` 50, and the inactive and weigh-in rows from step 1.
 2. Merge them by client and leave out anyone who should not be chased: whose check-in assignment is paused (`list_checkin_assignments`), whom the coach wrote to in the last three days (`get_messages`), or whose notes mention a holiday, illness or a planned break (`list_client_notes`).
-3. Rank: silent everywhere first, then two or more missed check-ins in a row, then one miss with other signs, then habits slipping on their own. One missed check-in from someone who trains and logs every day is fine; leave them off.
+3. Rank: silent everywhere first, then two or more missed check-ins in a row, then one miss with other signs, then habits slipping on their own. One missed check-in from someone who trains and logs every day is fine; leave them off. Count a missed daily check-in lightly: it is a gap in the week's log. A missed weekly check-in is the one the coach reviews, and ranks higher.
 4. For the top ten, read the last check-in so the nudge can mention something real: `list_client_checkins`, then `get_checkin`.
 5. If the last check-in carries a red flag (illness, injury, very low mood, high stress, a hard life event), draft no nudge. Tell the coach and offer a note and a task.
 6. Draft one personal nudge per client: one real detail from their last check-in, one small ask ("send me today's weight"), no guilt and no template feel.
@@ -65,7 +65,7 @@ Run this on Mondays, or when the coach asks who has gone quiet, who missed a che
 ## Judgment
 
 - Rank by impact on the client, not by tool. A client silent for a week outranks an overdue admin task.
-- A pending check-in and an unanswered message are people waiting for the coach. Never offer to snooze those two reasons.
+- A check-in waiting for review and an unanswered message are people waiting for the coach. Never offer to snooze those two reasons. A daily check-in that is only logged is nobody waiting: never put one under Do first.
 - Keep the brief to about ten lines. Put the rest under Can wait as counts.
 - Clients starting this week need a plan and a first check-in. Clients ending within two weeks need a renewal conversation, not a nudge.
 - Take counts and reasons from the tools. Do not recount. Paused, invited and onboarding clients never get attention rows, so do not report them as quiet.
@@ -77,7 +77,7 @@ Run this on Mondays, or when the coach asks who has gone quiet, who missed a che
 Today, Tuesday 8 October
 
 Do first
-1. Ada Jansen: check-in waiting 2 days. Review it.
+1. Ada Jansen: weekly check-in waiting 2 days. Review it.
 2. Ben de Vries: asked about his rest-day carbs yesterday. Reply.
 
 Contact today

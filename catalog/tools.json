@@ -197,7 +197,11 @@
         "checkins:write"
       ],
       "kind": "destructive",
-      "summary": "Assigns one form to up to 100 clients on the same schedule and notifies each."
+      "summary": "Assigns one form to up to 100 clients on the same schedule and notifies each.",
+      "values": [
+        "log",
+        "review"
+      ]
     },
     {
       "name": "assign_habits",
@@ -2034,7 +2038,11 @@
         "checkins:write"
       ],
       "kind": "write",
-      "summary": "Changes an assignment's schedule."
+      "summary": "Changes an assignment's schedule.",
+      "values": [
+        "log",
+        "review"
+      ]
     },
     {
       "name": "update_client",
@@ -2066,7 +2074,11 @@
         "library:write"
       ],
       "kind": "write",
-      "summary": "Changes the name, description, cover, default schedule, or sheetPreset (the Google Sheets tracker layout a check-in form syncs into; an empty string turns it off)."
+      "summary": "Changes the name, description, cover, default schedule, or sheetPreset (the Google Sheets tracker layout a check-in form syncs into; an empty string turns it off).",
+      "values": [
+        "log",
+        "review"
+      ]
     },
     {
       "name": "update_form_question",

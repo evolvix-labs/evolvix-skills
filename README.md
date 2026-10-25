@@ -82,7 +82,7 @@ When you connect, Evolvix asks what Claude may do. Permissions that send things 
 | Permission on the consent screen | Starts | Needed for |
 | --- | --- | --- |
 | Send messages to clients for you. | unticked | Sending replies, cards and nudges (answer-messages, coach-morning-brief, client-review) and the summary of a call (prep-client-call); a client's message to their coach |
-| Fill in and submit check-ins, review them, and send feedback to clients. | unticked | Saving feedback drafts (weekly-checkin-review), reopening or excusing a check-in (coach-morning-brief), assigning a check-in form (add-clients), a client's own check-in (do-my-checkin) |
+| Fill in and submit check-ins, review them, and send feedback to clients. | unticked | Saving feedback drafts, with a Loom link when the coach has one, and taking a daily check-in out of the review list (weekly-checkin-review), reopening or excusing a check-in (coach-morning-brief), assigning a check-in form (add-clients), a client's own check-in (do-my-checkin) |
 | Add and update clients, their notes, tags, and invitations. | ticked | add-clients, starting, flagging and finishing a call (prep-client-call), notes and follow-ups in every coach skill |
 | Create, change, and delete tasks. | ticked | Follow-up tasks in every coach skill, and the tasks made from a call's agreements (prep-client-call) |
 | Change client nutrition setups, plans, day types, and food logs. | ticked | nutrition-by-training-day, food in log-my-day and my-plan-today |
@@ -115,7 +115,7 @@ The skills are text instructions. They store nothing and send nothing anywhere. 
 python3 scripts/check.py --report
 ```
 
-The check validates the marketplace, both plugins, every skill's frontmatter, and that every tool a skill names exists in `catalog/tools.json`. The catalog lists the 208 curated tools and is generated from the Evolvix server's tool registry, so a renamed or removed tool fails the check instead of silently breaking a skill.
+The check validates the marketplace, both plugins, every skill's frontmatter, and that every tool a skill names exists in `catalog/tools.json`. The catalog lists the 215 curated tools and is generated from the Evolvix server's tool registry, so a renamed or removed tool fails the check instead of silently breaking a skill.
 
 ## License
 

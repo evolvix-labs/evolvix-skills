@@ -15,6 +15,8 @@ description: >
 
 A check-in form is what every assigned client fills in, often every day, and its answers feed the coach's week grid, trends and call briefs. This skill drafts the form as a table the coach can read in one look, saves it only after a yes, and changes a live form in a way that keeps the history usable.
 
+A daily form is usually only logged: its check-ins count in the week and never land in the coach's review list, and the weekly check-in is where the week gets reviewed. A weekly form is reviewed. Evolvix picks this from the schedule, so most coaches never have to choose.
+
 ## Ground rules
 
 - **Find the client, never guess.** Resolve a name with `list_clients`. When more than one client matches, ask which. Tools take the client's relationship id as `clientId`.
@@ -59,8 +61,8 @@ Pick the type from what the answer is, not from how the sheet looks.
 3. **Draft the form as a table**: number, label, type, required, and the settings in plain words (for example "1 to 5, Exhausted to Full of energy, higher is better"). Add the name, check-in or questionnaire, and a default schedule if the coach gave one. Ask about anything the source leaves open, in one message.
 4. **Ask for the yes.** Show the table. Wait for an explicit yes or for changes.
 5. **Create it** with `create_form`, every question in that one call. Then `get_form` and confirm the question count and keys match the table.
-6. **Schedule.** For a daily or weekly form, set the default schedule with `update_form` if the coach gave one.
-7. **Assign only when asked.** `assign_form_to_clients` notifies every client on it: show the client names and the schedule, ask, then assign.
+6. **Schedule.** For a daily or weekly form, set the default schedule with `update_form` if the coach gave one. Leave `reviewMode` out: a daily form is then only logged and a weekly one lands in the review list, which is right for most coaches. Send `schedule.reviewMode` (`log` or `review`) only when the coach asks, for instance to review a daily form every time. A questionnaire is always reviewed. The schedule is replaced as a whole, so start from the one in `get_form`.
+7. **Assign only when asked.** `assign_form_to_clients` notifies every client on it: show the client names, the schedule and where the check-ins go ("every day, only logged" or "Sundays, you review it"), ask, then assign. Leave `reviewMode` out unless the coach asked for one.
 
 ## Steps: changing a live form
 
@@ -85,6 +87,7 @@ Daily check-in (check-in, 14 questions)
  5  Cardio duration           number, min; only when 4 is yes
  ...
 14  General comments          long text
+Schedule: every day. Only logged: it counts in the week and never lands in your review list.
 Create it?
 ```
 
