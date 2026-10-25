@@ -37,7 +37,7 @@ One client, on demand: at the end of a training block, when something feels off,
    - **Body.** `list_client_metrics` gives what the client tracks and any open goal. `get_metric_trend` per metric with `from` and `to`: compare the average of the last 7 days with the 7 days before, and the first week of the window with the last. `get_metric_week` shows all measurements for one week.
    - **Habits.** `get_habit_summary` for the week; for a block, call it for the first and the last week. A cardio habit counts watch workouts, Evolvix training and manual entries; `get_activity_summary` shows the cardio minutes and sessions per week. Say so when the cardio is short and the client has no watch: it may be missing entries, not missing effort.
    - **Activity.** `get_activity_summary` with `period` week or month, when the client shares a wearable.
-   - **Check-ins.** `list_client_checkins` in the window, then `compare_checkins` with the first and the latest.
+   - **Check-ins.** `list_client_checkins` for the window (`limit` up to 100; `formId` narrows it to one form). The ones in review (`reviewMode` review), usually the weekly form, are the ones the coach reviews: `compare_checkins` with the first and the latest of them, never a weekly one against a daily one. The daily ones are only logged: for the week or two that stand out, `get_checkin_week` shows them as a grid, a row per question and a cell per day. Say how many days were answered.
 4. **Red-flag screen** across notes, check-ins, food logs and the latest message. On a hit, the report leads with it and the skill drafts nothing to the client.
 5. **Write the report** (format below).
 6. **Optional message.** Offer one short message to the client in the coach's voice. Send with `send_message` only after a yes. Offer a task (`create_task`) for follow-ups the coach promises and a note (`add_client_note`) for facts worth keeping.
@@ -73,6 +73,7 @@ Pattern: protein drops at breakfast on rest days.
 Training: 3 of 4 sessions, Saturday skipped twice in a row. New record: squat 85 kg x 5.
 Body: 7-day average 71.8 kg, down 0.4 kg on the week before (on pace for 68 kg by December).
 Habits: water 7/7, steps 4/7. Cardio 110 of 150 minutes.
+Check-ins: weekly energy 6 to 7, stress steady. Daily check-in answered 6 of 7 days, sleep under 7 hours on 3.
 
 Next
 1. Add a protein breakfast on rest days (she logs yoghurt already; double it).
