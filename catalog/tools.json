@@ -623,6 +623,19 @@
       "summary": "Returns one automation and its steps."
     },
     {
+      "name": "get_business_stats",
+      "scopes": [
+        "company:read"
+      ],
+      "kind": "read",
+      "summary": "Reads the numbers that run a coaching business for one company, over a rolling period in the company's time zone: clients (active, paused, archived, new and lost, churn, lifetime, twelve months), coach performance (check-ins due, received, reviewed on time, feedback speed, waiting and late; unread chat and first-reply speed), client outcomes against their phase (cut or bulk) with check-in and daily-log rates, revenue (monthly recurring revenue of paying subscriptions with trials counted apart, paid and failed payments; null for a connected app without the payments:read scope) and leads (join-link sign-ups, questionnaires, sources).",
+      "values": [
+        "4w",
+        "quarter",
+        "year"
+      ]
+    },
+    {
       "name": "get_call_brief",
       "scopes": [
         "clients:read"
