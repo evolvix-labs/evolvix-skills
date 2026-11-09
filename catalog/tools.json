@@ -168,6 +168,14 @@
       "summary": "Archives an automation and stops its enrollments."
     },
     {
+      "name": "archive_client",
+      "scopes": [
+        "clients:admin"
+      ],
+      "kind": "destructive",
+      "summary": "Archives a client."
+    },
+    {
       "name": "archive_exercise",
       "scopes": [
         "library:write"
@@ -1652,6 +1660,14 @@
       ],
       "kind": "write",
       "summary": "Sends an invitation again with a fresh link."
+    },
+    {
+      "name": "restore_client",
+      "scopes": [
+        "clients:admin"
+      ],
+      "kind": "write",
+      "summary": "Restores an archived client."
     },
     {
       "name": "resume_client",

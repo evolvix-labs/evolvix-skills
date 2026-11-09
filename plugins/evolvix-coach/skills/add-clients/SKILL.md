@@ -7,7 +7,9 @@ description: >
   up with a check-in, habits and a first task. Invitations go out only after the coach says so. Use
   whenever an Evolvix coach wants to add, import or move clients, says "new client", "here is my
   client list", "add Ada, ada@example.com", or wants to invite clients, even if they never say
-  import. Dutch: "nieuwe klant toevoegen", "klanten importeren", "nodig Ada uit".
+  import. Also offboards a client who stops: archives them so they lose app access while every record
+  is kept, and restores them later. Use for "Ada stops", "offboard Ada", "archive Ada". Dutch: "nieuwe
+  klant toevoegen", "klanten importeren", "nodig Ada uit", "Ada stopt", "offboard Ada".
 ---
 
 # Add clients
@@ -76,6 +78,24 @@ Skipped
 
 Add these 2 clients?
 ```
+
+## Offboarding a client
+
+When a client stops coaching, archive them; never delete. Pausing is for a holiday or an injury and keeps app access.
+
+1. Find the client with `list_clients` and confirm the name with the coach.
+2. Say what archiving does:
+   - the client can no longer use the app with this coach
+   - their open tasks are closed
+   - every record stays: program, nutrition, check-ins, photos, measurements, messages
+   - the coach can restore them at any time
+3. Ask whether the coach wants a goodbye message in the chat. If yes, draft it in the coach's voice and show it before archiving.
+4. On a yes, call `archive_client` with `goodbyeMessage` only when the coach approved one.
+5. Offer a short note with `add_client_note` (why they stopped, when) for when they come back.
+
+To bring a client back, call `restore_client` after the coach confirms.
+
+`archive_client` and `restore_client` need "Archive or delete clients and change their modules.", which starts unticked. Without it, name that permission and stop; do not pause the client instead.
 
 ## When something is missing
 
