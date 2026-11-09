@@ -157,7 +157,7 @@
         "automations:write"
       ],
       "kind": "write",
-      "summary": "Enrolls a client."
+      "summary": "Enrolls a client in the published version."
     },
     {
       "name": "archive_automation_rule",
@@ -166,6 +166,14 @@
       ],
       "kind": "write",
       "summary": "Archives an automation and stops its enrollments."
+    },
+    {
+      "name": "archive_client",
+      "scopes": [
+        "clients:admin"
+      ],
+      "kind": "destructive",
+      "summary": "Archives a client."
     },
     {
       "name": "archive_exercise",
@@ -197,7 +205,11 @@
         "checkins:write"
       ],
       "kind": "destructive",
-      "summary": "Assigns one form to up to 100 clients on the same schedule and notifies each."
+      "summary": "Assigns one form to up to 100 clients on the same schedule and notifies each.",
+      "values": [
+        "log",
+        "review"
+      ]
     },
     {
       "name": "assign_habits",
@@ -679,6 +691,18 @@
       "summary": "Returns a client's timeline: the phases that touch the range and the events inside it, and where the client stands today."
     },
     {
+      "name": "get_client_week_timeline",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Returns a client's weeks of the last 12 months, oldest first, from the first week with data to the current one, as a coach keeps them in a sheet.",
+      "values": [
+        "coach",
+        "shared"
+      ]
+    },
+    {
       "name": "get_client_workout",
       "scopes": [
         "training:read"
@@ -692,7 +716,11 @@
         "company:read"
       ],
       "kind": "read",
-      "summary": "Reads the coach's today page for one company."
+      "summary": "Reads the coach's today page for one company.",
+      "values": [
+        "all",
+        "mine"
+      ]
     },
     {
       "name": "get_day_calendar",
@@ -834,8 +862,7 @@
     {
       "name": "get_nutrition_day",
       "scopes": [
-        "nutrition:read",
-        "training:read"
+        "nutrition:read"
       ],
       "kind": "read",
       "summary": "Returns one day's nutrition: the day type, which plan applies after fallback, the target, and the meals."
@@ -867,8 +894,7 @@
     {
       "name": "get_nutrition_summary",
       "scopes": [
-        "nutrition:read",
-        "training:read"
+        "nutrition:read"
       ],
       "kind": "read",
       "summary": "Returns the last days up to today with the day type, the target the client saw, and what was logged, plus averages over logged days."
@@ -1062,7 +1088,7 @@
         "checkins:read"
       ],
       "kind": "read",
-      "summary": "Lists the forms assigned to a client with their schedule, next due check-in and compliance."
+      "summary": "Lists the forms assigned to a client with their schedule, next due check-in and compliance (sent and due; a missed check-in before the client's start date does not count, nor does a skipped one)."
     },
     {
       "name": "list_checkin_inbox",
@@ -1148,6 +1174,7 @@
         "checkin-pending",
         "coaching-low",
         "current",
+        "false",
         "inactive",
         "invited",
         "lastActive",
@@ -1160,6 +1187,7 @@
         "paused",
         "protein",
         "started",
+        "true",
         "week",
         "weigh-in"
       ]
@@ -1474,7 +1502,7 @@
         "training:write"
       ],
       "kind": "write",
-      "summary": "Logs a finished workout after the fact in one call: exercises with the sets as performed, all counted as done."
+      "summary": "Logs a finished workout after the fact in one call: exercises with the sets as performed, all counted as done (a set may carry partialReps, part-range reps after its full reps; they never count in reps, volume or records)."
     },
     {
       "name": "mark_checkins_reviewed",
@@ -1490,7 +1518,7 @@
         "chat:write"
       ],
       "kind": "write",
-      "summary": "Moves the caller's read marker to a message in this conversation."
+      "summary": "Moves the caller's read marker forward to a message in this conversation and lifts the caller's unread mark."
     },
     {
       "name": "message_clients",
@@ -1624,6 +1652,14 @@
       ],
       "kind": "write",
       "summary": "Sends an invitation again with a fresh link."
+    },
+    {
+      "name": "restore_client",
+      "scopes": [
+        "clients:admin"
+      ],
+      "kind": "write",
+      "summary": "Restores an archived client."
     },
     {
       "name": "resume_client",
@@ -1784,6 +1820,14 @@
         "recovery",
         "reverse"
       ]
+    },
+    {
+      "name": "set_client_week_timeline_cell",
+      "scopes": [
+        "clients:write"
+      ],
+      "kind": "write",
+      "summary": "Sets what the coach typed in one cell of a client's week timeline, or clears it with an empty value so the derived value shows again."
     },
     {
       "name": "set_daily_targets",
@@ -1975,7 +2019,7 @@
         "automations:read"
       ],
       "kind": "read",
-      "summary": "Previews runs due in the next 14 days."
+      "summary": "Previews runs due in the next 14 days and the path through the flow."
     },
     {
       "name": "unarchive_exercise",
@@ -2034,7 +2078,11 @@
         "checkins:write"
       ],
       "kind": "write",
-      "summary": "Changes an assignment's schedule."
+      "summary": "Changes an assignment's schedule.",
+      "values": [
+        "log",
+        "review"
+      ]
     },
     {
       "name": "update_client",
@@ -2066,7 +2114,11 @@
         "library:write"
       ],
       "kind": "write",
-      "summary": "Changes the name, description, cover, default schedule, or sheetPreset (the Google Sheets tracker layout a check-in form syncs into; an empty string turns it off)."
+      "summary": "Changes the name, description, cover, default schedule, or sheetPreset (the Google Sheets tracker layout a check-in form syncs into; an empty string turns it off).",
+      "values": [
+        "log",
+        "review"
+      ]
     },
     {
       "name": "update_form_question",
