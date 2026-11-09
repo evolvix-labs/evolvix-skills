@@ -643,6 +643,14 @@
       "summary": "Returns one check-in with the questions of its revision, the answers, comments and feedback."
     },
     {
+      "name": "get_checkin_brief",
+      "scopes": [
+        "checkins:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the first read of one sent check-in for the coach: plan week and phase, weights, last plan changes, energy balance, this week's numbers, what is coming, the client's open questions and the flags worth a look."
+    },
+    {
       "name": "get_checkin_question_trend",
       "scopes": [
         "checkins:read"
@@ -665,6 +673,14 @@
       ],
       "kind": "read",
       "summary": "Returns one client, including status, coaches, profile, and week."
+    },
+    {
+      "name": "get_client_cycle_phase",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Returns only the phase word of a client's current cycle block (BLAST, CRUISE, TRT, OFF, PCT, PREP, or null) and the date the next bloodwork is planned."
     },
     {
       "name": "get_client_overview",
@@ -1169,6 +1185,7 @@
         "all",
         "any",
         "archived",
+        "bloodwork-due",
         "cancelled",
         "checkin-overdue",
         "checkin-pending",

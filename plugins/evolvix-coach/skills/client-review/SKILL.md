@@ -37,7 +37,7 @@ One client, on demand: at the end of a training block, when something feels off,
    - **Body.** `list_client_metrics` gives what the client tracks and any open goal. `get_metric_trend` per metric with `from` and `to`: compare the average of the last 7 days with the 7 days before, and the first week of the window with the last. `get_metric_week` shows all measurements for one week.
    - **Habits.** `get_habit_summary` for the week; for a block, call it for the first and the last week. A cardio habit counts watch workouts, Evolvix training and manual entries; `get_activity_summary` shows the cardio minutes and sessions per week. Say so when the cardio is short and the client has no watch: it may be missing entries, not missing effort.
    - **Activity.** `get_activity_summary` with `period` week or month, when the client shares a wearable.
-   - **Check-ins.** `list_client_checkins` in the window, then `compare_checkins` with the first and the latest.
+   - **Check-ins.** `list_client_checkins` in the window, then `compare_checkins` with the first and the latest. For a check-in that waits for review, `get_checkin_brief` gives its whole week (changes, weights, energy balance, numbers, flags) in one call.
 4. **Red-flag screen** across notes, check-ins, food logs and the latest message. On a hit, the report leads with it and the skill drafts nothing to the client.
 5. **Write the report** (format below).
 6. **Optional message.** Offer one short message to the client in the coach's voice. Send with `send_message` only after a yes. Offer a task (`create_task`) for follow-ups the coach promises and a note (`add_client_note`) for facts worth keeping.
