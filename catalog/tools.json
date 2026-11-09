@@ -675,6 +675,14 @@
       "summary": "Returns one client, including status, coaches, profile, and week."
     },
     {
+      "name": "get_client_cycle_phase",
+      "scopes": [
+        "clients:read"
+      ],
+      "kind": "read",
+      "summary": "Returns only the phase word of a client's current cycle block (BLAST, CRUISE, TRT, OFF, PCT, PREP, or null) and the date the next bloodwork is planned."
+    },
+    {
       "name": "get_client_overview",
       "scopes": [
         "clients:read"
@@ -1177,6 +1185,7 @@
         "all",
         "any",
         "archived",
+        "bloodwork-due",
         "cancelled",
         "checkin-overdue",
         "checkin-pending",
