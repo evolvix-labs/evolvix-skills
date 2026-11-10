@@ -623,6 +623,19 @@
       "summary": "Returns one automation and its steps."
     },
     {
+      "name": "get_business_stats",
+      "scopes": [
+        "company:read"
+      ],
+      "kind": "read",
+      "summary": "Reads the numbers that run a coaching business for one company, over a rolling period in the company's time zone: clients (active, paused, archived, new and lost, churn, lifetime, twelve months), coach performance (check-ins due, received, reviewed on time, feedback speed, waiting and late; unread chat and first-reply speed), client outcomes against their phase (cut or bulk) with check-in and daily-log rates, revenue (monthly recurring revenue of paying subscriptions with trials counted apart, paid and failed payments; null for a connected app without the payments:read scope) and leads (join-link sign-ups, questionnaires, sources).",
+      "values": [
+        "4w",
+        "quarter",
+        "year"
+      ]
+    },
+    {
       "name": "get_call_brief",
       "scopes": [
         "clients:read"
@@ -914,6 +927,14 @@
       ],
       "kind": "read",
       "summary": "Returns the last days up to today with the day type, the target the client saw, and what was logged, plus averages over logged days."
+    },
+    {
+      "name": "get_onboarding_draft",
+      "scopes": [
+        "nutrition:read"
+      ],
+      "kind": "read",
+      "summary": "Returns the AI draft of a new client's starting setup, or null when there is none: its status (queued, running, ready, blocked, failed, released), why it is blocked, which sections are accepted or released, and the proposal with every food, supplement, exercise and program named and every total worked out."
     },
     {
       "name": "get_program",
@@ -1617,6 +1638,22 @@
       ],
       "kind": "destructive",
       "summary": "Replaces client copies of one placed workout with the program's current version and recomputes their day types."
+    },
+    {
+      "name": "release_onboarding_draft",
+      "scopes": [
+        "nutrition:write"
+      ],
+      "kind": "write",
+      "summary": "Writes sections of the draft to the client, as the releasing coach and through the same services as the coach's own screens: the phase, the meal plans linked to the training and rest day with their numbers and the training rhythm, the supplement lines (added to any plan the client has), the program, and the welcome message in chat.",
+      "dryRunDefault": true,
+      "values": [
+        "nutrition",
+        "phase",
+        "program",
+        "supplements",
+        "welcome"
+      ]
     },
     {
       "name": "remove_form_question",
