@@ -1,6 +1,6 @@
 # Evolvix for coaches
 
-Twelve skills that let Claude do the weekly coaching work in [Evolvix](https://evolvix.app) through the Evolvix connector: plan the day, answer messages, review check-ins, review one client, prepare and run a client call, set nutrition by training day, build and assign programs, add or import clients, import a client's past weights and measurements, build check-in forms, keep the exercise library, and design automations.
+Six skills that let Claude do the weekly coaching work in [Evolvix](https://evolvix.app) through the Evolvix connector: run the day and the inbox, review clients, calls and check-ins, plan training and nutrition, add clients with their history, and build forms and automations.
 
 ## Use it
 
@@ -8,20 +8,18 @@ Connect the Evolvix connector from the plugin's Connectors tab (or `/mcp` in Cla
 
 | Skill | Ask something like |
 | --- | --- |
-| coach-morning-brief | "What needs me today?" "Who has gone quiet?" |
-| answer-messages | "Answer my messages." "Send Dennis his peak week planner." |
-| weekly-checkin-review | "Review this weekend's check-ins." |
-| client-review | "How is Ada doing?" |
-| prep-client-call | "Prep my call with Dennis." "Bereid mijn check-in gesprek met Dennis voor." |
-| nutrition-by-training-day | "Put Ada on 2,100 on training days and 1,800 on rest days." "Put her training-day menu in." |
-| program-builder | "Build Ben a 4-day upper/lower for 8 weeks." |
-| add-clients | "Here is my client list from my old app." |
-| import-client-history | "Import Dennis's weights from this sheet." "Zet de gewichten uit mijn Excel over." |
-| automation-designer | "When a client misses two check-ins, message them and give me a task." |
-| form-builder | "Make my daily check-in like this sheet." "Zet alle schalen op 1 tot 5." |
-| exercise-library | "Add these 12 exercises to my library." "Voeg een kabel woodchop toe." |
+| coach-today | "What needs me today?" "Who has gone quiet?" "Answer my messages." "Send Dennis his peak week planner." |
+| review-clients | "How is Ada doing?" "Prep my call with Dennis." "Review this weekend's check-ins." |
+| plan-training | "Build Ben a 4-day upper/lower for 8 weeks." "Voeg een kabel woodchop toe." |
+| plan-nutrition | "Put Ada on 2,100 on training days and 1,800 on rest days." "Put her training-day menu in." |
+| add-clients | "Here is my client list from my old app." "Import Dennis's weights from this sheet." "Ada stops." |
+| forms-and-automations | "Make my daily check-in like this sheet." "When a client misses two check-ins, message them and give me a task." |
 
 Claude drafts and previews. Nothing reaches a client, changes a plan, or is published until you say yes. Check-in feedback is saved as a draft that you send from the Evolvix app, and the summary of a call stays a draft until you say to send it.
+
+## Code mode
+
+When the Evolvix connector offers code mode (`search_api`, `execute`, `apply_changes`), Claude does each read in one script on Evolvix's server and gets back only what it needs, and every write comes back as a list of steps that runs only after your yes. On the classic tools the same skills call the tools one by one.
 
 ## Data
 
